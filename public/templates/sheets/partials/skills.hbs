@@ -1,0 +1,194 @@
+<div class="skills-section">
+  <h2>Compétences</h2>
+  <div class="skills-grid">
+    <div class="skill-item" data-skill="armeDeTir">
+      <label>Arme de tir</label>
+      <div class="skill-circles">
+        {{#times 5}}
+          <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.armeDeTir.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
+        {{/times}}
+      </div>
+      <input type="hidden" name="system.skills.armeDeTir.value" value="{{actor.system.skills.armeDeTir.value}}" data-dtype="Number"/>
+    </div>
+    <div class="skill-item" data-skill="armesBlanches">
+      <label>Armes blanches</label>
+      <div class="skill-circles">
+        {{#times 5}}
+          <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.armesBlanches.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
+        {{/times}}
+      </div>
+      <input type="hidden" name="system.skills.armesBlanches.value" value="{{actor.system.skills.armesBlanches.value}}" data-dtype="Number"/>
+    </div>
+    <div class="skill-item" data-skill="athletisme">
+      <label>Athlétisme</label>
+      <div class="skill-circles">
+        {{#times 5}}
+          <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.athletisme.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
+        {{/times}}
+      </div>
+      <input type="hidden" name="system.skills.athletisme.value" value="{{actor.system.skills.athletisme.value}}" data-dtype="Number"/>
+    </div>
+    <div class="skill-item" data-skill="empathie">
+      <label>Empathie</label>
+      <div class="skill-circles">
+        {{#times 5}}
+          <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.empathie.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
+        {{/times}}
+      </div>
+      <input type="hidden" name="system.skills.empathie.value" value="{{actor.system.skills.empathie.value}}" data-dtype="Number"/>
+    </div>
+    <div class="skill-item" data-skill="furtivite">
+      <label>Furtivité</label>
+      <div class="skill-circles">
+        {{#times 5}}
+          <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.furtivite.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
+        {{/times}}
+      </div>
+      <input type="hidden" name="system.skills.furtivite.value" value="{{actor.system.skills.furtivite.value}}" data-dtype="Number"/>
+    </div>
+    <div class="skill-item" data-skill="ingenierie">
+      <label>Ingénierie</label>
+      <div class="skill-circles">
+        {{#times 5}}
+          <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.ingenierie.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
+        {{/times}}
+      </div>
+      <input type="hidden" name="system.skills.ingenierie.value" value="{{actor.system.skills.ingenierie.value}}" data-dtype="Number"/>
+    </div>
+    <div class="skill-item" data-skill="intrigue">
+      <label>Intrigue</label>
+      <div class="skill-circles">
+        {{#times 5}}
+          <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.intrigue.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
+        {{/times}}
+      </div>
+      <input type="hidden" name="system.skills.intrigue.value" value="{{actor.system.skills.intrigue.value}}" data-dtype="Number"/>
+    </div>
+    <div class="skill-item" data-skill="larcin">
+      <label>Larcin</label>
+      <div class="skill-circles">
+        {{#times 5}}
+          <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.larcin.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
+        {{/times}}
+      </div>
+      <input type="hidden" name="system.skills.larcin.value" value="{{actor.system.skills.larcin.value}}" data-dtype="Number"/>
+    </div>
+    <div class="skill-item" data-skill="legendes">
+      <label>Légendes</label>
+      <div class="skill-circles">
+        {{#times 5}}
+          <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.legendes.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
+        {{/times}}
+      </div>
+      <input type="hidden" name="system.skills.legendes.value" value="{{actor.system.skills.legendes.value}}" data-dtype="Number"/>
+    </div>
+    <div class="skill-item" data-skill="lettre">
+      <label>Lettre</label>
+      <div class="skill-circles">
+        {{#times 5}}
+          <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.lettre.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
+        {{/times}}
+      </div>
+      <input type="hidden" name="system.skills.lettre.value" value="{{actor.system.skills.lettre.value}}" data-dtype="Number"/>
+    </div>
+    <div class="skill-item" data-skill="navigation">
+      <label>Navigation</label>
+      <div class="skill-circles">
+        {{#times 5}}
+          <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.navigation.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
+        {{/times}}
+      </div>
+      <input type="hidden" name="system.skills.navigation.value" value="{{actor.system.skills.navigation.value}}" data-dtype="Number"/>
+    </div>
+    <div class="skill-item" data-skill="persuasion">
+      <label>Persuasion</label>
+      <div class="skill-circles">
+        {{#times 5}}
+          <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.persuasion.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
+        {{/times}}
+      </div>
+      <input type="hidden" name="system.skills.persuasion.value" value="{{actor.system.skills.persuasion.value}}" data-dtype="Number"/>
+    </div>
+    <div class="skill-item" data-skill="protocole">
+      <label>Protocole</label>
+      <div class="skill-circles">
+        {{#times 5}}
+          <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.protocole.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
+        {{/times}}
+      </div>
+      <input type="hidden" name="system.skills.protocole.value" value="{{actor.system.skills.protocole.value}}" data-dtype="Number"/>
+    </div>
+    <div class="skill-item" data-skill="recherche">
+      <label>Recherche</label>
+      <div class="skill-circles">
+        {{#times 5}}
+          <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.recherche.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
+        {{/times}}
+      </div>
+      <input type="hidden" name="system.skills.recherche.value" value="{{actor.system.skills.recherche.value}}" data-dtype="Number"/>
+    </div>
+    <div class="skill-item" data-skill="religion">
+      <label>Religion</label>
+      <div class="skill-circles">
+        {{#times 5}}
+          <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.religion.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
+        {{/times}}
+      </div>
+      <input type="hidden" name="system.skills.religion.value" value="{{actor.system.skills.religion.value}}" data-dtype="Number"/>
+    </div>
+    <div class="skill-item" data-skill="representation">
+      <label>Représentation</label>
+      <div class="skill-circles">
+        {{#times 5}}
+          <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.representation.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
+        {{/times}}
+      </div>
+      <input type="hidden" name="system.skills.representation.value" value="{{actor.system.skills.representation.value}}" data-dtype="Number"/>
+    </div>
+    <div class="skill-item" data-skill="science">
+      <label>Science</label>
+      <div class="skill-circles">
+        {{#times 5}}
+          <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.science.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
+        {{/times}}
+      </div>
+      <input type="hidden" name="system.skills.science.value" value="{{actor.system.skills.science.value}}" data-dtype="Number"/>
+    </div>
+    <div class="skill-item" data-skill="sorcellerie">
+      <label>Sorcellerie</label>
+      <div class="skill-circles">
+        {{#times 5}}
+          <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.sorcellerie.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
+        {{/times}}
+      </div>
+      <input type="hidden" name="system.skills.sorcellerie.value" value="{{actor.system.skills.sorcellerie.value}}" data-dtype="Number"/>
+    </div>
+    <div class="skill-item" data-skill="strategie">
+      <label>Stratégie</label>
+      <div class="skill-circles">
+        {{#times 5}}
+          <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.strategie.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
+        {{/times}}
+      </div>
+      <input type="hidden" name="system.skills.strategie.value" value="{{actor.system.skills.strategie.value}}" data-dtype="Number"/>
+    </div>
+    <div class="skill-item" data-skill="subornation">
+      <label>Subornation</label>
+      <div class="skill-circles">
+        {{#times 5}}
+          <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.subornation.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
+        {{/times}}
+      </div>
+      <input type="hidden" name="system.skills.subornation.value" value="{{actor.system.skills.subornation.value}}" data-dtype="Number"/>
+    </div>
+    <div class="skill-item" data-skill="survie">
+      <label>Survie</label>
+      <div class="skill-circles">
+        {{#times 5}}
+          <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.survie.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
+        {{/times}}
+      </div>
+      <input type="hidden" name="system.skills.survie.value" value="{{actor.system.skills.survie.value}}" data-dtype="Number"/>
+    </div>
+  </div>
+</div>

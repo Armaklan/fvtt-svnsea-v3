@@ -46,6 +46,9 @@ export class PlayerCharacterSheet extends ActorSheet {
     // Gestion des cercles d'attributs
     html.find('.attribute-circle').click(this._onAttributeCircleClick.bind(this));
 
+    // Gestion des cercles de compétences
+    html.find('.skill-circle').click(this._onSkillCircleClick.bind(this));
+
     // Modification des techniques
     html.find(".technique-item input").change(async (event) => {
       const li = $(event.currentTarget).closest(".technique-item");
@@ -138,6 +141,27 @@ export class PlayerCharacterSheet extends ActorSheet {
     if (attribute) {
       const field = `system.attributes.${attribute}.value`;
       await this.actor.update({ [field]: index });
+    }
+  }
+
+  /**
+   * Handle clicking on a skill circle
+   * @param {Event} event   The originating click event
+   * @private
+   */
+  private async _onSkillCircleClick(event: JQuery.ClickEvent) {
+    event.preventDefault();
+    const element = event.currentTarget;
+    const index = Number(element.dataset.index);
+    const parent = $(element).closest(".skill-item");
+    const skill = parent.data("skill");
+
+    if (skill) {
+      const field = `system.skills.${skill}.value`;
+      // Allow toggling off if clicking on the same value
+      const currentValue = getProperty(this.actor, field);
+      const newValue = (currentValue === index && index === 1) ? 0 : index;
+      await this.actor.update({ [field]: newValue });
     }
   }
 }

@@ -19,6 +19,71 @@
         "panache": {
           "value": 1
         }
+      },
+      "skills": {
+        "armeDeTir": {
+          "value": 0
+        },
+        "armesBlanches": {
+          "value": 0
+        },
+        "athletisme": {
+          "value": 0
+        },
+        "empathie": {
+          "value": 0
+        },
+        "furtivite": {
+          "value": 0
+        },
+        "ingenierie": {
+          "value": 0
+        },
+        "intrigue": {
+          "value": 0
+        },
+        "larcin": {
+          "value": 0
+        },
+        "legendes": {
+          "value": 0
+        },
+        "lettre": {
+          "value": 0
+        },
+        "navigation": {
+          "value": 0
+        },
+        "persuasion": {
+          "value": 0
+        },
+        "protocole": {
+          "value": 0
+        },
+        "recherche": {
+          "value": 0
+        },
+        "religion": {
+          "value": 0
+        },
+        "representation": {
+          "value": 0
+        },
+        "science": {
+          "value": 0
+        },
+        "sorcellerie": {
+          "value": 0
+        },
+        "strategie": {
+          "value": 0
+        },
+        "subornation": {
+          "value": 0
+        },
+        "survie": {
+          "value": 0
+        }
       }
     }
   },

@@ -16,7 +16,8 @@ Hooks.once("init", async () => {
         "systems/fvtt-svnsea-v3/templates/sheets/partials/equipement.hbs",
         "systems/fvtt-svnsea-v3/templates/sheets/partials/technique.hbs",
         "systems/fvtt-svnsea-v3/templates/sheets/partials/header.hbs",
-        "systems/fvtt-svnsea-v3/templates/sheets/partials/profile.hbs"
+        "systems/fvtt-svnsea-v3/templates/sheets/partials/profile.hbs",
+        "systems/fvtt-svnsea-v3/templates/sheets/partials/skills.hbs"
     ]);
 
     // Handlebars helpers
