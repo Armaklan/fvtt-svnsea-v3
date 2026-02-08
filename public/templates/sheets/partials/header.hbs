@@ -26,5 +26,22 @@
         <input name="system.details.historique" type="text" value="{{actor.system.details.historique}}" placeholder="Historique"/>
       </div>
     </div>
+    <div class="blessures-section">
+      <label>Blessure</label>
+      <div class="blessures-list">
+        {{#each blessures}}
+          <div class="blessure-group">
+            {{#each normals}}
+              <a class="blessure-normal {{#if filled}}filled{{/if}}" data-index="{{index}}">
+                <i class="{{#if filled}}fas{{else}}far{{/if}} fa-circle"></i>
+              </a>
+            {{/each}}
+            <a class="blessure-dramatique {{#if dramatique.filled}}filled{{/if}}" data-index="{{index}}">
+              <i class="{{#if dramatique.filled}}fas{{else}}far{{/if}} fa-star"></i>
+            </a>
+          </div>
+        {{/each}}
+      </div>
+    </div>
   </div>
 </header>

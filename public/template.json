@@ -108,6 +108,10 @@
       },
       "heroisme": {
         "value": 0
+      },
+      "blessures": {
+        "value": 0,
+        "dramatiques": 0
       }
     }
   },

@@ -30,6 +30,33 @@ export class PlayerCharacterSheet extends ActorSheet {
       attributes[attr].seuil = 10 - value;
     }
 
+    // Calcul des blessures
+    const gaillardise = attributes?.gaillardise?.value || 1;
+    const resolution = attributes?.resolution?.value || 1;
+    const baseBlessure = Math.max(gaillardise, resolution);
+    const blessuresValue = data.actor.system.blessures?.value || 0;
+    const dramatiquesValue = data.actor.system.blessures?.dramatiques || 0;
+
+    const blessures = [];
+    for (let i = 1; i <= 4; i++) {
+      const group = {
+        index: i,
+        normals: [] as any[],
+        dramatique: {
+          filled: dramatiquesValue >= i
+        }
+      };
+      for (let j = 1; j <= baseBlessure; j++) {
+        const woundIndex = (i - 1) * baseBlessure + j;
+        group.normals.push({
+          index: woundIndex,
+          filled: blessuresValue >= woundIndex
+        });
+      }
+      blessures.push(group);
+    }
+    data.blessures = blessures;
+
     return data;
   }
 
@@ -63,6 +90,77 @@ export class PlayerCharacterSheet extends ActorSheet {
 
     // Mise à jour directe du nom de l'équipement
     html.find('.equipement-name input').change(this._onEquipementNameChange.bind(this));
+
+    // Gestion des blessures
+    html.find('.blessure-normal').click(this._onBlessureNormalClick.bind(this));
+    html.find('.blessure-dramatique').click(this._onBlessureDramatiqueClick.bind(this));
+  }
+
+  /**
+   * Handle clicking on a normal wound circle
+   * @param {Event} event   The originating click event
+   * @private
+   */
+  private async _onBlessureNormalClick(event: JQuery.ClickEvent) {
+    event.preventDefault();
+    const index = Number(event.currentTarget.dataset.index);
+    const system = (this.actor as any).system;
+    const currentValue = Number(system.blessures?.value) || 0;
+    const currentDramatiques = Number(system.blessures?.dramatiques) || 0;
+    
+    // Si on clique sur la dernière blessure remplie, on la décoche
+    // Sinon on remplit jusqu'à cet index
+    const newValue = currentValue === index ? index - 1 : index;
+
+    const updates: any = { "system.blessures.value": newValue };
+
+    // Quand je coche un cercle, je doit aussi cocher les étoiles qui sont avant.
+    // L'étoile avant le cercle d'index 'index' est celle du groupe précédent.
+    const attributes = system.attributes;
+    const gaillardise = attributes?.gaillardise?.value || 1;
+    const resolution = attributes?.resolution?.value || 1;
+    const baseBlessure = Math.max(gaillardise, resolution);
+    
+    const groupOfClick = Math.ceil(index / baseBlessure);
+    const requiredDramatiques = groupOfClick - 1;
+
+    if (newValue > currentValue && currentDramatiques < requiredDramatiques) {
+      updates["system.blessures.dramatiques"] = requiredDramatiques;
+    }
+
+    await this.actor.update(updates);
+  }
+
+  /**
+   * Handle clicking on a dramatic wound star
+   * @param {Event} event   The originating click event
+   * @private
+   */
+  private async _onBlessureDramatiqueClick(event: JQuery.ClickEvent) {
+    event.preventDefault();
+    const index = Number(event.currentTarget.dataset.index);
+    const system = (this.actor as any).system;
+    const currentDramatiques = Number(system.blessures?.dramatiques) || 0;
+    const currentValue = Number(system.blessures?.value) || 0;
+    
+    const newValue = currentDramatiques === index ? index - 1 : index;
+
+    const updates: any = { "system.blessures.dramatiques": newValue };
+
+    // Quand je coche une étoile, je dois aussi cocher tous les cercles précédents.
+    // Les cercles précédents l'étoile 'index' sont tous ceux des groupes 1 à 'index'.
+    const attributes = system.attributes;
+    const gaillardise = attributes?.gaillardise?.value || 1;
+    const resolution = attributes?.resolution?.value || 1;
+    const baseBlessure = Math.max(gaillardise, resolution);
+
+    const requiredValue = index * baseBlessure;
+
+    if (newValue > currentDramatiques && currentValue < requiredValue) {
+      updates["system.blessures.value"] = requiredValue;
+    }
+
+    await this.actor.update(updates);
   }
 
   /**
