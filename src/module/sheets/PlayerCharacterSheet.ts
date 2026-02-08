@@ -37,8 +37,10 @@ export class PlayerCharacterSheet extends ActorSheet {
     const blessuresValue = data.actor.system.blessures?.value || 0;
     const dramatiquesValue = data.actor.system.blessures?.dramatiques || 0;
 
+    const maxDramatiques = data.actor.type === 'lieutenant' ? 2 : 4;
+
     const blessures = [];
-    for (let i = 1; i <= 4; i++) {
+    for (let i = 1; i <= maxDramatiques; i++) {
       const group = {
         index: i,
         normals: [] as any[],

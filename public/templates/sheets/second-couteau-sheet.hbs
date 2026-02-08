@@ -1,0 +1,24 @@
+<form class="{{cssClass}} second-couteau-sheet" autocomplete="off">
+  <header class="sheet-header">
+    <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100"/>
+    <div class="header-fields">
+      <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="Nom"/></h1>
+      
+      <div class="puissance-section">
+        <label>Puissance (1-10)</label>
+        <input name="system.puissance" type="number" value="{{actor.system.puissance}}" min="1" max="10" />
+      </div>
+
+      <div class="blessures-section">
+        <label>Blessures</label>
+        <div class="blessures-list">
+          {{#each blessures}}
+            <a class="blessure-circle {{#if filled}}filled{{/if}}" data-index="{{index}}">
+              <i class="{{#if filled}}fas{{else}}far{{/if}} fa-circle"></i>
+            </a>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+  </header>
+</form>

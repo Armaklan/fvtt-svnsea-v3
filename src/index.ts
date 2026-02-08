@@ -1,5 +1,7 @@
 import "./styles/main.scss";
 import {PlayerCharacterSheet} from "./module/sheets/PlayerCharacterSheet";
+import {SecondCouteauSheet} from "./module/sheets/SecondCouteauSheet";
+import {LieutenantSheet} from "./module/sheets/LieutenantSheet";
 import {AvantageSheet} from "./module/sheets/AvantageSheet";
 import {TraversSheet} from "./module/sheets/TraversSheet";
 
@@ -9,7 +11,15 @@ Hooks.once("init", async () => {
     // Register custom sheets
     Actors.unregisterSheet("core", ActorSheet);
     Actors.registerSheet("fvtt-svnsea-v3", PlayerCharacterSheet, {
-        types: ["playerCharacter"],
+        types: ["playerCharacter", "scelerat"],
+        makeDefault: true
+    });
+    Actors.registerSheet("fvtt-svnsea-v3", SecondCouteauSheet, {
+        types: ["secondCouteau"],
+        makeDefault: true
+    });
+    Actors.registerSheet("fvtt-svnsea-v3", LieutenantSheet, {
+        types: ["lieutenant"],
         makeDefault: true
     });
 
@@ -30,7 +40,8 @@ Hooks.once("init", async () => {
         "systems/fvtt-svnsea-v3/templates/sheets/partials/travers.hbs",
         "systems/fvtt-svnsea-v3/templates/sheets/partials/header.hbs",
         "systems/fvtt-svnsea-v3/templates/sheets/partials/profile.hbs",
-        "systems/fvtt-svnsea-v3/templates/sheets/partials/skills.hbs"
+        "systems/fvtt-svnsea-v3/templates/sheets/partials/skills.hbs",
+        "systems/fvtt-svnsea-v3/templates/sheets/second-couteau-sheet.hbs"
     ]);
 
     // Handlebars helpers
