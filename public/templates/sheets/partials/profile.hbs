@@ -1,22 +1,47 @@
 <div class="profiles-grid">
-  <div class="profile-item">
+  <div class="profile-item" data-attribute="esprit">
     <label>Esprit</label>
-    <input type="number" name="system.attributes.esprit.value" value="{{actor.system.attributes.esprit.value}}" min="1" max="5" data-dtype="Number"/>
+    <div class="attribute-circles">
+      {{#times 5}}
+        <i class="far fa-circle attribute-circle {{#if (lte this ../actor.system.attributes.esprit.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
+      {{/times}}
+    </div>
+    <input type="hidden" name="system.attributes.esprit.value" value="{{actor.system.attributes.esprit.value}}" data-dtype="Number"/>
   </div>
-  <div class="profile-item">
+  <div class="profile-item" data-attribute="finesse">
     <label>Finesse</label>
-    <input type="number" name="system.attributes.finesse.value" value="{{actor.system.attributes.finesse.value}}" min="1" max="5" data-dtype="Number"/>
+    <div class="attribute-circles">
+      {{#times 5}}
+        <i class="far fa-circle attribute-circle {{#if (lte this ../actor.system.attributes.finesse.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
+      {{/times}}
+    </div>
+    <input type="hidden" name="system.attributes.finesse.value" value="{{actor.system.attributes.finesse.value}}" data-dtype="Number"/>
   </div>
-  <div class="profile-item">
+  <div class="profile-item" data-attribute="gaillardise">
     <label>Gaillardise</label>
-    <input type="number" name="system.attributes.gaillardise.value" value="{{actor.system.attributes.gaillardise.value}}" min="1" max="5" data-dtype="Number"/>
+    <div class="attribute-circles">
+      {{#times 5}}
+        <i class="far fa-circle attribute-circle {{#if (lte this ../actor.system.attributes.gaillardise.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
+      {{/times}}
+    </div>
+    <input type="hidden" name="system.attributes.gaillardise.value" value="{{actor.system.attributes.gaillardise.value}}" data-dtype="Number"/>
   </div>
-  <div class="profile-item">
+  <div class="profile-item" data-attribute="resolution">
     <label>Résolution</label>
-    <input type="number" name="system.attributes.resolution.value" value="{{actor.system.attributes.resolution.value}}" min="1" max="5" data-dtype="Number"/>
+    <div class="attribute-circles">
+      {{#times 5}}
+        <i class="far fa-circle attribute-circle {{#if (lte this ../actor.system.attributes.resolution.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
+      {{/times}}
+    </div>
+    <input type="hidden" name="system.attributes.resolution.value" value="{{actor.system.attributes.resolution.value}}" data-dtype="Number"/>
   </div>
-  <div class="profile-item">
+  <div class="profile-item" data-attribute="panache">
     <label>Panache</label>
-    <input type="number" name="system.attributes.panache.value" value="{{actor.system.attributes.panache.value}}" min="1" max="5" data-dtype="Number"/>
+    <div class="attribute-circles">
+      {{#times 5}}
+        <i class="far fa-circle attribute-circle {{#if (lte this ../actor.system.attributes.panache.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
+      {{/times}}
+    </div>
+    <input type="hidden" name="system.attributes.panache.value" value="{{actor.system.attributes.panache.value}}" data-dtype="Number"/>
   </div>
 </div>

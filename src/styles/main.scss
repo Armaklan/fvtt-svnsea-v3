@@ -55,7 +55,6 @@
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
-    cursor: pointer;
   }
 
   .profile-item::before {
@@ -70,7 +69,6 @@
   }
 
   .profile-item:hover {
-    transform: translateY(-3px);
     box-shadow: 0 6px 12px var(--color-shadow);
     border-color: var(--color-accent);
   }
@@ -87,6 +85,33 @@
     color: var(--color-secondary);
     text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.5);
     letter-spacing: 0.5px;
+    pointer-events: none;
+  }
+
+  .attribute-circles {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 5px;
+
+    .attribute-circle {
+      font-size: 1.2em;
+      color: var(--color-primary);
+      cursor: pointer;
+      transition: all 0.2s ease;
+
+      &:hover {
+        transform: scale(1.2);
+        color: var(--color-accent);
+      }
+
+      &.fas {
+        color: var(--color-primary);
+      }
+
+      &.far {
+        color: var(--color-border);
+      }
+    }
   }
 
   .profile-item input {

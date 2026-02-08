@@ -31,6 +31,9 @@ export class PlayerCharacterSheet extends ActorSheet {
     // Delete Item
     html.find('.item-delete').click(this._onItemDelete.bind(this));
 
+    // Gestion des cercles d'attributs
+    html.find('.attribute-circle').click(this._onAttributeCircleClick.bind(this));
+
     // Modification des techniques
     html.find(".technique-item input").change(async (event) => {
       const li = $(event.currentTarget).closest(".technique-item");
@@ -106,5 +109,23 @@ export class PlayerCharacterSheet extends ActorSheet {
     const element = $(event.currentTarget).closest(".technique-item, .equipement-item");
     const itemId = element.data("item-id");
     await this.actor.deleteEmbeddedDocuments("Item", [itemId]);
+  }
+
+  /**
+   * Handle clicking on an attribute circle
+   * @param {Event} event   The originating click event
+   * @private
+   */
+  private async _onAttributeCircleClick(event: JQuery.ClickEvent) {
+    event.preventDefault();
+    const element = event.currentTarget;
+    const index = Number(element.dataset.index);
+    const parent = $(element).closest(".profile-item");
+    const attribute = parent.data("attribute");
+
+    if (attribute) {
+      const field = `system.attributes.${attribute}.value`;
+      await this.actor.update({ [field]: index });
+    }
   }
 }

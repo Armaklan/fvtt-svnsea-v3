@@ -18,4 +18,16 @@ Hooks.once("init", async () => {
         "systems/fvtt-svnsea-v3/templates/sheets/partials/header.hbs",
         "systems/fvtt-svnsea-v3/templates/sheets/partials/profile.hbs"
     ]);
+
+    // Handlebars helpers
+    Handlebars.registerHelper('times', function(n, block) {
+        let accum = '';
+        for(let i = 1; i <= n; ++i)
+            accum += block.fn(i);
+        return accum;
+    });
+
+    Handlebars.registerHelper('lte', function(v1, v2) {
+        return v1 <= v2;
+    });
 });
