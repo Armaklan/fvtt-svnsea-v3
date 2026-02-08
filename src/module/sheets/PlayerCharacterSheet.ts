@@ -49,6 +49,9 @@ export class PlayerCharacterSheet extends ActorSheet {
     // Gestion des cercles de compétences
     html.find('.skill-circle').click(this._onSkillCircleClick.bind(this));
 
+    // Gestion de la spécialité des compétences
+    html.find('.skill-specialized-toggle').click(this._onSkillSpecializedClick.bind(this));
+
     // Modification des techniques
     html.find(".technique-item input").change(async (event) => {
       const li = $(event.currentTarget).closest(".technique-item");
@@ -162,6 +165,24 @@ export class PlayerCharacterSheet extends ActorSheet {
       const currentValue = getProperty(this.actor, field);
       const newValue = (currentValue === index && index === 1) ? 0 : index;
       await this.actor.update({ [field]: newValue });
+    }
+  }
+
+  /**
+   * Handle clicking on a skill specialty toggle
+   * @param {Event} event   The originating click event
+   * @private
+   */
+  private async _onSkillSpecializedClick(event: JQuery.ClickEvent) {
+    event.preventDefault();
+    const element = event.currentTarget;
+    const parent = $(element).closest(".skill-item");
+    const skill = parent.data("skill");
+
+    if (skill) {
+      const field = `system.skills.${skill}.specialized`;
+      const currentValue = getProperty(this.actor, field);
+      await this.actor.update({ [field]: !currentValue });
     }
   }
 }

@@ -22,67 +22,88 @@
       },
       "skills": {
         "armeDeTir": {
-          "value": 0
+          "value": 0,
+          "specialized": false
         },
         "armesBlanches": {
-          "value": 0
+          "value": 0,
+          "specialized": false
         },
         "athletisme": {
-          "value": 0
+          "value": 0,
+          "specialized": false
         },
         "empathie": {
-          "value": 0
+          "value": 0,
+          "specialized": false
         },
         "furtivite": {
-          "value": 0
+          "value": 0,
+          "specialized": false
         },
         "ingenierie": {
-          "value": 0
+          "value": 0,
+          "specialized": false
         },
         "intrigue": {
-          "value": 0
+          "value": 0,
+          "specialized": false
         },
         "larcin": {
-          "value": 0
+          "value": 0,
+          "specialized": false
         },
         "legendes": {
-          "value": 0
+          "value": 0,
+          "specialized": false
         },
         "lettre": {
-          "value": 0
+          "value": 0,
+          "specialized": false
         },
         "navigation": {
-          "value": 0
+          "value": 0,
+          "specialized": false
         },
         "persuasion": {
-          "value": 0
+          "value": 0,
+          "specialized": false
         },
         "protocole": {
-          "value": 0
+          "value": 0,
+          "specialized": false
         },
         "recherche": {
-          "value": 0
+          "value": 0,
+          "specialized": false
         },
         "religion": {
-          "value": 0
+          "value": 0,
+          "specialized": false
         },
         "representation": {
-          "value": 0
+          "value": 0,
+          "specialized": false
         },
         "science": {
-          "value": 0
+          "value": 0,
+          "specialized": false
         },
         "sorcellerie": {
-          "value": 0
+          "value": 0,
+          "specialized": false
         },
         "strategie": {
-          "value": 0
+          "value": 0,
+          "specialized": false
         },
         "subornation": {
-          "value": 0
+          "value": 0,
+          "specialized": false
         },
         "survie": {
-          "value": 0
+          "value": 0,
+          "specialized": false
         }
       }
     }
