@@ -416,9 +416,11 @@ export class PlayerCharacterSheet extends ActorSheet {
             const skillValue = skill.value;
             const attrValue = attribute.value;
             const seuil = attribute.seuil;
+            const dramatiques = (this.actor as any).system.blessures?.dramatiques || 0;
+            const isSpecialized = skill.specialized || false;
 
-            // Nombre de dés : Attribut + Compétence + Bonus - Pari
-            const numDice = attrValue + skillValue + bonus - pari;
+            // Nombre de dés : Attribut + Compétence + Bonus - Pari - Blessures Dramatiques
+            let numDice = attrValue + skillValue + bonus - pari - dramatiques;
 
             if (numDice <= 0) {
               ui.notifications.warn("Le nombre de dés doit être supérieur à 0.");
@@ -431,7 +433,20 @@ export class PlayerCharacterSheet extends ActorSheet {
 
             // Compter les succès (dés >= seuil)
             let successCount = 0;
-            const diceResults = (roll.terms[0] as any).results;
+            let diceResults = [...(roll.terms[0] as any).results];
+
+            // Gérer les 10 explosifs si spécialité
+            if (isSpecialized) {
+              let tens = diceResults.filter(r => r.result === 10).length;
+              while (tens > 0) {
+                const extraRoll = new Roll(`${tens}d10`);
+                await extraRoll.evaluate();
+                const extraResults = (extraRoll.terms[0] as any).results;
+                diceResults = diceResults.concat(extraResults);
+                tens = extraResults.filter((r: any) => r.result === 10).length;
+              }
+            }
+
             for (let result of diceResults) {
               if (result.result >= seuil) {
                 successCount++;
@@ -455,7 +470,10 @@ export class PlayerCharacterSheet extends ActorSheet {
 
             const chatContent = `
               <div class="fvtt-svnsea-v3-roll">
-                <h3>${attrLabel} - ${skillLabel}</h3>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                  <img src="${this.actor.img}" width="32" height="32" style="border: none;"/>
+                  <h4 style="margin: 0; font-size: 0.9em;">${attrLabel} - ${skillLabel}</h4>
+                </div>
                 <ul>
                   <li>Succès : ${successCount}</li>
                   ${pariMessage}
