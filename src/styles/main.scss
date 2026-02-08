@@ -133,7 +133,7 @@
     h2 {
       margin: -15px -15px 15px -15px;
       padding: 10px 15px;
-      background: linear-gradient(to right, var(--color-secondary), rgba(44, 62, 80, 0.8));
+      background: linear-gradient(to right, var(--color-primary), rgba(139, 0, 0, 0.8));
       color: var(--color-text-light);
       border-bottom: 2px solid var(--color-accent);
       border-radius: 7px 7px 0 0;
@@ -258,21 +258,20 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-bottom: 25px;
     padding: 15px;
-    background: linear-gradient(to bottom, var(--color-secondary), rgba(44, 62, 80, 0.9));
-    border-bottom: 3px solid var(--color-accent);
+    background: transparent;
+    border-bottom: 3px solid var(--color-border);
     border-radius: 8px 8px 0 0;
     box-shadow: 0 4px 8px var(--color-shadow);
   }
 
   .profile-img {
-    border: 3px solid var(--color-accent);
+    border: 3px solid var(--color-border);
     border-radius: 10px;
     margin-right: 20px;
     box-shadow: 0 4px 8px var(--color-shadow);
-    height: 160px;
-    width: 160px;
+    height: 120px;
+    width: 120px;
     transition: all 0.3s ease;
     position: relative;
   }
@@ -300,6 +299,118 @@
     flex-direction: column;
   }
 
+  .header-name-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 5px;
+
+    .charname {
+      flex: 1;
+      margin: 0;
+      input {
+        width: 100%;
+        height: 45px;
+        font-size: 1.6em;
+        font-weight: bold;
+        padding: 5px 15px;
+        border-radius: 8px;
+        text-align: center;
+        color: var(--color-text);
+        background-color: white;
+        border: 1px solid black;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+      }
+    }
+  }
+
+  .heroisme-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: white;
+    padding: 5px 15px;
+    border: 1px solid black;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+
+    label {
+      font-size: 0.8em;
+      font-weight: bold;
+      text-transform: uppercase;
+      color: var(--color-primary);
+      margin-bottom: 2px;
+    }
+
+    .heroisme-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      input {
+        width: 40px;
+        height: 30px;
+        text-align: center;
+        font-size: 1.2em;
+        font-weight: bold;
+        border: none;
+        background: transparent;
+        pointer-events: none; /* Only allow changes via buttons */
+      }
+
+      .heroisme-control {
+        cursor: pointer;
+        color: var(--color-primary);
+        font-size: 1em;
+        transition: transform 0.2s ease;
+
+        &:hover {
+          transform: scale(1.2);
+          color: var(--color-accent);
+        }
+      }
+    }
+  }
+
+  .header-details {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    margin-top: 5px;
+
+    .header-field {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+
+      label {
+        font-size: 0.9em;
+        font-weight: bold;
+        color: var(--color-text);
+        text-transform: uppercase;
+        margin-bottom: 2px;
+      }
+
+      input {
+        width: 100%;
+        height: 28px;
+        padding: 2px 8px;
+        border-radius: 4px;
+        background-color: white;
+        border: 1px solid black;
+        color: var(--color-text);
+        font-size: 1em;
+
+        &:focus {
+          border-color: var(--color-primary);
+          background-color: white;
+          outline: none;
+        }
+      }
+    }
+  }
+
   .header-fields .resources {
     display: flex;
     flex-direction: row;
@@ -308,25 +419,9 @@
     margin-top: 10px;
   }
 
-  .charname input {
-    width: 100%;
-    height: 45px;
-    margin-bottom: 15px;
-    font-size: 1.6em;
-    font-weight: bold;
-    padding: 5px 15px;
-    border-radius: 8px;
-    text-align: center;
-    color: var(--color-text-light);
-    background-color: rgba(255, 255, 255, 0.1);
-    border: 1px solid var(--color-accent);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
-  }
-
   .charname input:focus {
-    background-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 0 8px var(--color-accent);
+    background-color: white;
+    box-shadow: 0 0 8px var(--color-primary);
     outline: none;
   }
 
@@ -354,12 +449,14 @@
   /* Tab Styling */
   .sheet-tabs {
     display: flex;
-    margin-bottom: 20px;
+    margin-bottom: 0;
     border-bottom: 2px solid var(--color-border);
     gap: 5px;
   }
 
   .sheet-tabs .item {
+    flex: 1;
+    text-align: center;
     padding: 10px 20px;
     border: 1px solid var(--color-border);
     border-bottom: none;
@@ -385,6 +482,11 @@
     border-color: var(--color-primary);
     border-bottom: 2px solid var(--color-primary);
     margin-bottom: -2px;
+  }
+
+  /* Sheet Body */
+  .sheet-body {
+    padding-top: 20px;
   }
 
   /* Description Tab */
@@ -451,8 +553,8 @@
     padding: 5px 10px;
     border: 1px solid var(--color-accent);
     border-radius: 5px;
-    background: rgba(255, 255, 255, 0.1);
-    color: var(--color-text-light);
+    background: var(--color-background);
+    color: var(--color-text);
     cursor: pointer;
     font-size: 0.9em;
     transition: all 0.2s ease;
@@ -468,21 +570,40 @@
 
   .item-control:hover {
     background: var(--color-accent);
-    color: var(--color-secondary);
+    color: white;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
 
   .item-control.item-delete {
     border-color: var(--color-primary);
+    color: var(--color-primary);
   }
 
   .item-control.item-delete:hover {
     background: var(--color-primary);
-    color: var(--color-text-light);
+    color: white;
   }
 
-  .avantages-list, .equipements-list, .travers-list {
+  .avantages-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  .equipements-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  .travers-list {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -491,13 +612,14 @@
   .avantage-item, .equipement-item, .travers-item {
     display: flex;
     flex-direction: column;
-    padding: 10px 12px;
+    padding: 8px 10px;
     margin-bottom: 8px;
     border: 1px solid var(--color-border);
     border-radius: 6px;
     background: white;
     transition: all 0.2s ease;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    height: 100%;
   }
 
   .avantage-item:hover, .equipement-item:hover, .travers-item:hover {
@@ -507,7 +629,7 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
   }
 
-  .avantage-row, .travers-row {
+  .avantage-row, .travers-row, .equipement-row {
     display: flex;
     align-items: center;
     width: 100%;
@@ -530,7 +652,7 @@
 
   .avantage-name, .equipement-name, .travers-name {
     flex: 1;
-    margin-right: 15px;
+    margin-right: 5px;
     font-weight: bold;
     font-size: 1.1em;
   }
@@ -539,7 +661,7 @@
     width: 100%;
     margin-top: 5px;
     font-style: italic;
-    color: var(--color-text-dark);
+    color: var(--color-text);
     font-size: 0.9em;
     padding: 5px;
     border-top: 1px dashed var(--color-border);
@@ -547,38 +669,15 @@
 
   .equipement-name input {
     width: 100%;
-    padding: 8px 10px;
+    padding: 5px 8px;
     border: 1px solid var(--color-border);
     border-radius: 5px;
-    font-size: 1.05em;
+    font-size: 1em;
     transition: all 0.2s ease;
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
   }
 
   .equipement-name input:focus {
-    border-color: var(--color-accent);
-    box-shadow: 0 0 5px rgba(212, 175, 55, 0.3);
-    outline: none;
-  }
-
-  .equipement-value {
-    width: 80px;
-    margin-right: 15px;
-  }
-
-  .equipement-value input {
-    width: 100%;
-    padding: 8px;
-    text-align: center;
-    border: 1px solid var(--color-border);
-    border-radius: 5px;
-    font-size: 1.1em;
-    font-weight: bold;
-    transition: all 0.2s ease;
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-  }
-
-  .equipement-value input:focus {
     border-color: var(--color-accent);
     box-shadow: 0 0 5px rgba(212, 175, 55, 0.3);
     outline: none;

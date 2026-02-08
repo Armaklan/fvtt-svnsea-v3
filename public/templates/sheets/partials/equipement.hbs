@@ -8,11 +8,13 @@
   {{#each actor.items as |item|}}
       {{#if (eq item.type "equipements")}}
           <li class="equipement-item" data-item-id="{{item._id}}">
-            <div class="equipement-name">
-              <input type="text" name="equipement-name" value="{{item.name}}"/>
-            </div>
-            <div class="item-controls">
-              <a class="item-control item-delete" title="Delete Equipement"><i class="fas fa-trash"></i></a>
+            <div class="equipement-row">
+              <div class="equipement-name">
+                <input type="text" value="{{item.name}}" placeholder="Nom de l'équipement"/>
+              </div>
+              <div class="item-controls">
+                <a class="item-control item-delete" title="Delete Equipement"><i class="fas fa-trash"></i></a>
+              </div>
             </div>
           </li>
       {{/if}}

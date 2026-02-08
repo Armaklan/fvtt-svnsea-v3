@@ -57,6 +57,42 @@ export class PlayerCharacterSheet extends ActorSheet {
 
     // Suppression des avantages et equipements
     html.find('.item-delete').click(this._onItemDelete.bind(this));
+
+    // Gestion de l'héroïsme
+    html.find('.heroisme-control').click(this._onHeroismeControl.bind(this));
+
+    // Mise à jour directe du nom de l'équipement
+    html.find('.equipement-name input').change(this._onEquipementNameChange.bind(this));
+  }
+
+  /**
+   * Handle changing the name of an equipment directly from the sheet
+   * @param {Event} event   The originating change event
+   * @private
+   */
+  private async _onEquipementNameChange(event: JQuery.ChangeEvent) {
+    event.preventDefault();
+    const element = $(event.currentTarget).closest(".equipement-item");
+    const itemId = element.data("item-id");
+    const newName = event.currentTarget.value;
+    const item = this.actor.items.get(itemId);
+    if (item) {
+      await item.update({ name: newName });
+    }
+  }
+
+  /**
+   * Handle heroism controls (+/-)
+   * @param {Event} event   The originating click event
+   * @private
+   */
+  private async _onHeroismeControl(event: JQuery.ClickEvent) {
+    event.preventDefault();
+    const action = event.currentTarget.dataset.action;
+    const currentValue = Number((this.actor as any).system.heroisme?.value) || 0;
+    const newValue = action === "increase" ? currentValue + 1 : Math.max(0, currentValue - 1);
+
+    await this.actor.update({ "system.heroisme.value": newValue });
   }
 
   /**
@@ -85,11 +121,9 @@ export class PlayerCharacterSheet extends ActorSheet {
 
     let itemData;
     if (type === "equipements") {
-      // For equipements, only include name (no value)
       itemData = {
-        name: `New ${typeName}`,
-        type: type,
-        system: {}
+        name: `Nouvel Equipement`,
+        type: type
       };
     } else if (type === "avantage") {
       itemData = {

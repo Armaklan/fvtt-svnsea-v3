@@ -1,6 +1,30 @@
 <header class="sheet-header">
-  <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="160" width="160"/>
+  <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="120" width="120"/>
   <div class="header-fields">
-    <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="Name"/></h1>
+    <div class="header-name-row">
+      <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="Name"/></h1>
+      <div class="heroisme-section">
+        <label>Héroïsme</label>
+        <div class="heroisme-controls">
+          <a class="heroisme-control" data-action="decrease"><i class="fas fa-minus"></i></a>
+          <input name="system.heroisme.value" type="number" value="{{actor.system.heroisme.value}}" />
+          <a class="heroisme-control" data-action="increase"><i class="fas fa-plus"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="header-details">
+      <div class="header-field">
+        <label>Nation</label>
+        <input name="system.details.nation" type="text" value="{{actor.system.details.nation}}" placeholder="Nation"/>
+      </div>
+      <div class="header-field">
+        <label>Profil</label>
+        <input name="system.details.profil" type="text" value="{{actor.system.details.profil}}" placeholder="Profil"/>
+      </div>
+      <div class="header-field">
+        <label>Historique</label>
+        <input name="system.details.historique" type="text" value="{{actor.system.details.historique}}" placeholder="Historique"/>
+      </div>
+    </div>
   </div>
 </header>

@@ -105,6 +105,9 @@
           "value": 0,
           "specialized": false
         }
+      },
+      "heroisme": {
+        "value": 0
       }
     }
   },
