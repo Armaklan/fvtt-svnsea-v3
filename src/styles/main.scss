@@ -182,6 +182,24 @@
       }
     }
 
+    .skill-roll {
+      margin-right: 8px;
+      display: flex;
+      align-items: center;
+
+      .skill-roll-dice {
+        font-size: 0.9em;
+        cursor: pointer;
+        color: var(--color-primary);
+        transition: all 0.2s ease;
+
+        &:hover {
+          transform: scale(1.2);
+          color: var(--color-accent);
+        }
+      }
+    }
+
     label {
       flex: 1;
       font-weight: bold;

@@ -52,6 +52,9 @@ export class PlayerCharacterSheet extends ActorSheet {
     // Gestion de la spécialité des compétences
     html.find('.skill-specialized-toggle').click(this._onSkillSpecializedClick.bind(this));
 
+    // Gestion du lancer de dés pour les compétences
+    html.find('.skill-roll-dice').click(this._onRollSkill.bind(this));
+
     // Modification des techniques
     html.find(".technique-item input").change(async (event) => {
       const li = $(event.currentTarget).closest(".technique-item");
@@ -184,5 +187,169 @@ export class PlayerCharacterSheet extends ActorSheet {
       const currentValue = getProperty(this.actor, field);
       await this.actor.update({ [field]: !currentValue });
     }
+  }
+
+  /**
+   * Handle clicking on a skill roll icon
+   * @param {Event} event   The originating click event
+   * @private
+   */
+  private async _onRollSkill(event: JQuery.ClickEvent) {
+    event.preventDefault();
+    const element = event.currentTarget;
+    const parent = $(element).closest(".skill-item");
+    const skillKey = parent.data("skill");
+    const skill = getProperty(this.actor, `system.skills.${skillKey}`);
+    const attributes = (this.actor as any).system.attributes;
+
+    const attributeLabels: Record<string, string> = {
+      esprit: "Esprit",
+      finesse: "Finesse",
+      gaillardise: "Gaillardise",
+      resolution: "Résolution",
+      panache: "Panache"
+    };
+
+    const skillLabels: Record<string, string> = {
+      armeDeTir: "Arme de tir",
+      armesBlanches: "Armes blanches",
+      athletisme: "Athlétisme",
+      empathie: "Empathie",
+      furtivite: "Furtivité",
+      ingenierie: "Ingénierie",
+      intrigue: "Intrigue",
+      larcin: "Larcin",
+      legendes: "Légendes",
+      lettre: "Lettre",
+      navigation: "Navigation",
+      persuasion: "Persuasion",
+      protocole: "Protocole",
+      recherche: "Recherche",
+      religion: "Religion",
+      representation: "Représentation",
+      science: "Science",
+      sorcellerie: "Sorcellerie",
+      strategie: "Stratégie",
+      subornation: "Subornation",
+      survie: "Survie"
+    };
+
+    const skillLabel = skillLabels[skillKey] || skillKey;
+
+    // Préparer le contenu de la modale
+    let attributeOptions = "";
+    for (let key of Object.keys(attributes)) {
+      const label = attributeLabels[key] || key;
+      attributeOptions += `<option value="${key}">${label}</option>`;
+    }
+
+    const template = `
+      <form>
+        <div class="form-group">
+          <label>Attribut</label>
+          <select name="attribute">
+            ${attributeOptions}
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Bonus (dés supplémentaires)</label>
+          <input type="number" name="bonus" value="0" />
+        </div>
+        <div class="form-group">
+          <label>Pari</label>
+          <input type="number" name="pari" value="0" />
+        </div>
+        <div class="form-group">
+          <label>Difficulté (optionnel)</label>
+          <input type="number" name="difficulty" value="2" />
+        </div>
+      </form>
+    `;
+
+    new Dialog({
+      title: `Test de ${skillLabel}`,
+      content: template,
+      buttons: {
+        roll: {
+          icon: '<i class="fas fa-dice"></i>',
+          label: "Lancer",
+          callback: async (html: any) => {
+            const attrKey = html.find('[name="attribute"]').val();
+            const bonus = parseInt(html.find('[name="bonus"]').val()) || 0;
+            const pari = parseInt(html.find('[name="pari"]').val()) || 0;
+            const difficultyStr = html.find('[name="difficulty"]').val();
+            const difficulty = difficultyStr !== "" ? parseInt(difficultyStr) : null;
+
+            const attribute = attributes[attrKey];
+            const attrLabel = attributeLabels[attrKey] || attrKey;
+            const skillValue = skill.value;
+            const attrValue = attribute.value;
+            const seuil = attribute.seuil;
+
+            // Nombre de dés : Attribut + Compétence + Bonus - Pari
+            const numDice = attrValue + skillValue + bonus - pari;
+
+            if (numDice <= 0) {
+              ui.notifications.warn("Le nombre de dés doit être supérieur à 0.");
+              return;
+            }
+
+            // Lancer les dés
+            const roll = new Roll(`${numDice}d10`);
+            await roll.evaluate();
+
+            // Compter les succès (dés >= seuil)
+            let successCount = 0;
+            const diceResults = (roll.terms[0] as any).results;
+            for (let result of diceResults) {
+              if (result.result >= seuil) {
+                successCount++;
+              }
+            }
+
+            // Message de résultat
+            let statusMessage = "";
+            if (difficulty !== null) {
+              if (successCount >= difficulty) {
+                statusMessage = `<p style="color: green; font-weight: bold;">Réussite (Difficulté ${difficulty})</p>`;
+              } else {
+                statusMessage = `<p style="color: red; font-weight: bold;">Échec (Difficulté ${difficulty})</p>`;
+              }
+            }
+
+            let pariMessage = "";
+            if (pari > 0) {
+              pariMessage = `<li>Pari : ${pari}</li>`;
+            }
+
+            const chatContent = `
+              <div class="fvtt-svnsea-v3-roll">
+                <h3>${attrLabel} - ${skillLabel}</h3>
+                <ul>
+                  <li>Succès : ${successCount}</li>
+                  ${pariMessage}
+                </ul>
+                ${statusMessage}
+                <div class="roll-details" style="font-size: 0.8em; color: gray;">
+                  Dés : ${diceResults.map((r: any) => r.result).join(", ")} (Seuil : ${seuil})
+                </div>
+              </div>
+            `;
+
+            await ChatMessage.create({
+              speaker: ChatMessage.getSpeaker({ actor: this.actor as any }),
+              content: chatContent,
+              type: CONST.CHAT_MESSAGE_TYPES.ROLL,
+              rolls: [roll]
+            });
+          }
+        },
+        cancel: {
+          icon: '<i class="fas fa-times"></i>',
+          label: "Annuler"
+        }
+      },
+      default: "roll"
+    }).render(true);
   }
 }
