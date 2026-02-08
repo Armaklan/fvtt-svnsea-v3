@@ -15,8 +15,20 @@ export class PlayerCharacterSheet extends ActorSheet {
 
   /** @override */
   getData() {
-    const data = super.getData();
-    console.log({actorData: data});
+    const data: any = super.getData();
+
+    // Calculer les seuils de garde pour chaque attribut
+    const attributes = data.actor.system.attributes;
+    for (let attr in attributes) {
+      const value = attributes[attr].value;
+      // Formule : Seuil = 10 - valeur (si valeur entre 1 et 5)
+      // Attribut 1 => Garde 9
+      // Attribut 2 => Garde 8
+      // Attribut 3 => Garde 7
+      // Attribut 4 => Garde 6
+      // Attribut 5 => Garde 5
+      attributes[attr].seuil = 10 - value;
+    }
 
     return data;
   }

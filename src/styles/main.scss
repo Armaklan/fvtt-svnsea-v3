@@ -114,6 +114,13 @@
     }
   }
 
+  .attribute-seuil {
+    font-size: 0.9em;
+    color: var(--color-secondary);
+    margin-top: 2px;
+    font-style: italic;
+  }
+
   .profile-item input {
     width: 65px;
     height: 45px;
