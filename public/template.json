@@ -1,0 +1,35 @@
+{
+  "Actor": {
+    "types": ["playerCharacter"],
+    "playerCharacter": {
+      "type": "playerCharacter",
+      "attributes": {
+        "esprit": {
+          "value": 1
+        },
+        "finesse": {
+          "value": 1
+        },
+        "gaillardise": {
+          "value": 1
+        },
+        "resolution": {
+          "value": 1
+        },
+        "panache": {
+          "value": 1
+        }
+      }
+    }
+  },
+  "Item": {
+    "types": ["technique", "equipements"],
+    "technique": {
+      "name": "",
+      "value": 0
+    },
+    "equipements": {
+      "name": ""
+    }
+  }
+}

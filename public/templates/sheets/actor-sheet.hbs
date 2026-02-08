@@ -1,0 +1,28 @@
+<form class="{{cssClass}}" autocomplete="off">
+  {{> "systems/fvtt-svnsea-v3/templates/sheets/partials/header.hbs"}}
+
+  {{!-- Sheet Tab Navigation --}}
+  <nav class="sheet-tabs tabs" data-group="primary">
+    <a class="item" data-tab="attributes">Attributs</a>
+  </nav>
+
+  {{!-- Sheet Body --}}
+  <section class="sheet-body">
+    {{!-- Attributes Tab --}}
+    <div class="tab" data-group="primary" data-tab="attributes">
+      {{> "systems/fvtt-svnsea-v3/templates/sheets/partials/profile.hbs"}}
+
+      <div class="content-row">
+        <div class="content-column col-double">
+          {{!-- Techniques Section --}}
+          {{> "systems/fvtt-svnsea-v3/templates/sheets/partials/technique.hbs"}}
+        </div>
+
+        <div class="content-column col-flex">
+          {{!-- Equipements Section --}}
+          {{> "systems/fvtt-svnsea-v3/templates/sheets/partials/equipement.hbs"}}
+        </div>
+      </div>
+    </div>
+  </section>
+</form>

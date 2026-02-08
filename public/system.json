@@ -1,0 +1,22 @@
+{
+  "id": "fvtt-svnsea-v3",
+  "name": "fvtt-svnsea-v3",
+  "title": "7Sea V3",
+  "version": "0.0.10",
+  "authors": [
+    {
+      "name": "ZUBER Lionel",
+      "email": "lionel.zuber@armaklan.org"
+    }
+  ],
+  "compatibility": {
+    "minimum": 12,
+    "verified": "13.0"
+  },
+  "esmodules": ["./bundle.js"],
+  "styles": ["./style.css"],
+  "languages": [],
+  "packs": [],
+  "manifest": "https://raw.githubusercontent.com/Armaklan/fvtt-svnsea-v3/main/public/system.json",
+  "download": "https://github.com/Armaklan/fvtt-svnsea-v3/releases/download/0.0.10/fvtt-svnsea-v3.zip"
+}
