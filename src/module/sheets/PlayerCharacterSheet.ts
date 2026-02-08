@@ -40,9 +40,6 @@ export class PlayerCharacterSheet extends ActorSheet {
     // Add Item
     html.find('.item-create').click(this._onItemCreate.bind(this));
 
-    // Delete Item
-    html.find('.item-delete').click(this._onItemDelete.bind(this));
-
     // Gestion des cercles d'attributs
     html.find('.attribute-circle').click(this._onAttributeCircleClick.bind(this));
 
@@ -55,39 +52,24 @@ export class PlayerCharacterSheet extends ActorSheet {
     // Gestion du lancer de dés pour les compétences
     html.find('.skill-roll-dice').click(this._onRollSkill.bind(this));
 
-    // Modification des techniques
-    html.find(".technique-item input").change(async (event) => {
-      const li = $(event.currentTarget).closest(".technique-item");
-      const itemId = li.data("item-id");
-      const item = this.actor.items.get(itemId);
-      if (!item) return;
+    // Modification des avantages
+    html.find('.item-edit').click(this._onItemEdit.bind(this));
 
-      // Récupération des deux champs depuis le <li>
-      const name = li.find('input[name="technique-name"]').val();
-      const value = Number(li.find('input[name="technique-value"]').val());
+    // Suppression des avantages et equipements
+    html.find('.item-delete').click(this._onItemDelete.bind(this));
+  }
 
-      // Mise à jour de l'item
-      await item.update({
-        name: name,
-        "system.value": value
-      });
-    });
-
-    // Modification des equipements
-    html.find(".equipement-item input").change(async (event) => {
-      const li = $(event.currentTarget).closest(".equipement-item");
-      const itemId = li.data("item-id");
-      const item = this.actor.items.get(itemId);
-      if (!item) return;
-
-      // Récupération du nom depuis le <li>
-      const name = li.find('input[name="equipement-name"]').val();
-
-      // Mise à jour de l'item
-      await item.update({
-        name: name
-      });
-    });
+  /**
+   * Handle editing an Owned Item for the actor
+   * @param {Event} event   The originating click event
+   * @private
+   */
+  private _onItemEdit(event: JQuery.ClickEvent) {
+    event.preventDefault();
+    const element = $(event.currentTarget).closest(".avantage-item, .equipement-item");
+    const itemId = element.data("item-id");
+    const item = this.actor.items.get(itemId);
+    item?.sheet?.render(true);
   }
 
   /**
@@ -109,8 +91,17 @@ export class PlayerCharacterSheet extends ActorSheet {
         type: type,
         system: {}
       };
+    } else if (type === "avantage") {
+      itemData = {
+        name: `Nouvel Avantage`,
+        type: type,
+        system: {
+          type: "passif",
+          description: ""
+        }
+      };
     } else {
-      // For other types (technique), include value
+      // For other types, include value
       itemData = {
         name: `New ${typeName}`,
         type: type,
@@ -127,7 +118,7 @@ export class PlayerCharacterSheet extends ActorSheet {
    */
   private async _onItemDelete(event: JQuery.ClickEvent) {
     event.preventDefault();
-    const element = $(event.currentTarget).closest(".technique-item, .equipement-item");
+    const element = $(event.currentTarget).closest(".avantage-item, .equipement-item");
     const itemId = element.data("item-id");
     await this.actor.deleteEmbeddedDocuments("Item", [itemId]);
   }

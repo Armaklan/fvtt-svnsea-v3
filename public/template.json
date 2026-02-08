@@ -109,10 +109,11 @@
     }
   },
   "Item": {
-    "types": ["technique", "equipements"],
-    "technique": {
+    "types": ["avantage", "equipements"],
+    "avantage": {
       "name": "",
-      "value": 0
+      "type": "passif",
+      "description": ""
     },
     "equipements": {
       "name": ""

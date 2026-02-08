@@ -1,0 +1,34 @@
+<header class="avantages-header">
+  <h3 class="avantages-title">Avantages</h3>
+  <div class="item-controls">
+    <a class="item-control item-create" title="Create Avantage" data-type="avantage"><i class="fas fa-plus"></i> Ajouter un Avantage</a>
+  </div>
+</header>
+<ol class="avantages-list">
+  {{#each actor.items as |item|}}
+      {{#if (eq item.type "avantage")}}
+          <li class="avantage-item" data-item-id="{{item._id}}">
+            <div class="avantage-row">
+              <div class="avantage-type">
+                <div class="avantage-icon">
+                  {{#if (eq item.system.type "passif")}}<i class="fas fa-infinity" title="Passif"></i>{{/if}}
+                  {{#if (eq item.system.type "situationnel")}}<i class="fas fa-dice" title="Situationnel"></i>{{/if}}
+                  {{#if (eq item.system.type "heroique")}}<i class="fas fa-coins" title="Héroïque"></i>{{/if}}
+                  {{#if (eq item.system.type "extraordinaire")}}<i class="fas fa-star" title="Extraordinaire"></i>{{/if}}
+                </div>
+              </div>
+              <div class="avantage-name">
+                <span>{{item.name}}</span>
+              </div>
+              <div class="item-controls">
+                <a class="item-control item-edit" title="Modifier l'Avantage"><i class="fas fa-edit"></i></a>
+                <a class="item-control item-delete" title="Supprimer l'Avantage"><i class="fas fa-trash"></i></a>
+              </div>
+            </div>
+            <div class="avantage-description">
+              {{{item.system.description}}}
+            </div>
+          </li>
+      {{/if}}
+  {{/each}}
+</ol>

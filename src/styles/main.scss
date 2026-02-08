@@ -418,8 +418,8 @@
     box-shadow: 0 5px 15px var(--color-shadow);
   }
 
-  /* Techniques and Equipements Sections */
-  .techniques-header, .equipements-header {
+  /* Avantages and Equipements Sections */
+  .avantages-header, .equipements-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -430,7 +430,7 @@
     border-radius: 7px 7px 0 0;
   }
 
-  .techniques-title, .equipements-title {
+  .avantages-title, .equipements-title {
     margin: 0;
     font-size: 1.4em;
     font-weight: bold;
@@ -478,15 +478,15 @@
     color: var(--color-text-light);
   }
 
-  .techniques-list, .equipements-list {
+  .avantages-list, .equipements-list {
     list-style: none;
     padding: 0;
     margin: 0;
   }
 
-  .technique-item, .equipement-item {
+  .avantage-item, .equipement-item {
     display: flex;
-    align-items: center;
+    flex-direction: column;
     padding: 10px 12px;
     margin-bottom: 8px;
     border: 1px solid var(--color-border);
@@ -496,40 +496,73 @@
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   }
 
-  .technique-item:hover, .equipement-item:hover {
+  .avantage-item:hover, .equipement-item:hover {
     background-color: rgba(212, 175, 55, 0.05);
     border-color: var(--color-accent);
     transform: translateX(3px);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
   }
 
-  .technique-name, .equipement-name {
-    flex: 1;
-    margin-right: 15px;
+  .avantage-row {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 5px;
   }
 
-  .technique-name input, .equipement-name input {
+  .avantage-type {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    gap: 5px;
+
+    .avantage-icon {
+      width: 24px;
+      text-align: center;
+      font-size: 1.2em;
+      color: var(--color-primary);
+    }
+  }
+
+  .avantage-name, .equipement-name {
+    flex: 1;
+    margin-right: 15px;
+    font-weight: bold;
+    font-size: 1.1em;
+  }
+
+  .avantage-description {
+    width: 100%;
+    margin-top: 5px;
+    font-style: italic;
+    color: var(--color-text-dark);
+    font-size: 0.9em;
+    padding: 5px;
+    border-top: 1px dashed var(--color-border);
+  }
+
+  .equipement-name input {
     width: 100%;
     padding: 8px 10px;
     border: 1px solid var(--color-border);
     border-radius: 5px;
-    font-size: 1.1em;
+    font-size: 1.05em;
     transition: all 0.2s ease;
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
   }
 
-  .technique-name input:focus, .equipement-name input:focus {
+  .equipement-name input:focus {
     border-color: var(--color-accent);
     box-shadow: 0 0 5px rgba(212, 175, 55, 0.3);
     outline: none;
   }
 
-  .technique-value {
+  .equipement-value {
     width: 80px;
     margin-right: 15px;
   }
 
-  .technique-value input {
+  .equipement-value input {
     width: 100%;
     padding: 8px;
     text-align: center;
@@ -541,7 +574,7 @@
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
   }
 
-  .technique-value input:focus {
+  .equipement-value input:focus {
     border-color: var(--color-accent);
     box-shadow: 0 0 5px rgba(212, 175, 55, 0.3);
     outline: none;
@@ -550,4 +583,55 @@
 
 .fvtt-svnsea-v3.sheet.actor form {
   border-radius: 8px;
+}
+
+.fvtt-svnsea-v3.sheet.item.avantage {
+  .sheet-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--color-accent);
+
+    img {
+      border: 2px solid var(--color-primary);
+      border-radius: 5px;
+    }
+
+    h1 {
+      flex: 1;
+      margin: 0;
+      input {
+        width: 100%;
+        height: 100%;
+        font-size: 1.5em;
+        font-weight: bold;
+        border: none;
+        background: transparent;
+      }
+    }
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+    }
+    select {
+      width: 100%;
+      padding: 5px;
+      border: 1px solid var(--color-border);
+      border-radius: 4px;
+    }
+  }
+
+  .editor {
+    height: 300px;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    background: white;
+  }
 }
