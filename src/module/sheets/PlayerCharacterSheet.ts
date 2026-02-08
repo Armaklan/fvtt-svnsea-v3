@@ -66,7 +66,7 @@ export class PlayerCharacterSheet extends ActorSheet {
    */
   private _onItemEdit(event: JQuery.ClickEvent) {
     event.preventDefault();
-    const element = $(event.currentTarget).closest(".avantage-item, .equipement-item");
+    const element = $(event.currentTarget).closest(".avantage-item, .equipement-item, .travers-item");
     const itemId = element.data("item-id");
     const item = this.actor.items.get(itemId);
     item?.sheet?.render(true);
@@ -100,6 +100,14 @@ export class PlayerCharacterSheet extends ActorSheet {
           description: ""
         }
       };
+    } else if (type === "travers") {
+      itemData = {
+        name: `Nouveau Travers`,
+        type: type,
+        system: {
+          description: ""
+        }
+      };
     } else {
       // For other types, include value
       itemData = {
@@ -118,7 +126,7 @@ export class PlayerCharacterSheet extends ActorSheet {
    */
   private async _onItemDelete(event: JQuery.ClickEvent) {
     event.preventDefault();
-    const element = $(event.currentTarget).closest(".avantage-item, .equipement-item");
+    const element = $(event.currentTarget).closest(".avantage-item, .equipement-item, .travers-item");
     const itemId = element.data("item-id");
     await this.actor.deleteEmbeddedDocuments("Item", [itemId]);
   }

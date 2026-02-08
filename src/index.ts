@@ -1,6 +1,7 @@
 import "./styles/main.scss";
 import {PlayerCharacterSheet} from "./module/sheets/PlayerCharacterSheet";
 import {AvantageSheet} from "./module/sheets/AvantageSheet";
+import {TraversSheet} from "./module/sheets/TraversSheet";
 
 Hooks.once("init", async () => {
     console.log("Custom System | Initialisation");
@@ -17,11 +18,16 @@ Hooks.once("init", async () => {
         types: ["avantage"],
         makeDefault: true
     });
+    Items.registerSheet("fvtt-svnsea-v3", TraversSheet, {
+        types: ["travers"],
+        makeDefault: true
+    });
 
     // Register Handlebars partials
     loadTemplates([
         "systems/fvtt-svnsea-v3/templates/sheets/partials/equipement.hbs",
         "systems/fvtt-svnsea-v3/templates/sheets/partials/avantage.hbs",
+        "systems/fvtt-svnsea-v3/templates/sheets/partials/travers.hbs",
         "systems/fvtt-svnsea-v3/templates/sheets/partials/header.hbs",
         "systems/fvtt-svnsea-v3/templates/sheets/partials/profile.hbs",
         "systems/fvtt-svnsea-v3/templates/sheets/partials/skills.hbs"

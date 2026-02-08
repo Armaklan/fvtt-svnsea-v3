@@ -109,7 +109,7 @@
     }
   },
   "Item": {
-    "types": ["avantage", "equipements"],
+    "types": ["avantage", "equipements", "travers"],
     "avantage": {
       "name": "",
       "type": "passif",
@@ -117,6 +117,10 @@
     },
     "equipements": {
       "name": ""
+    },
+    "travers": {
+      "name": "",
+      "description": ""
     }
   }
 }

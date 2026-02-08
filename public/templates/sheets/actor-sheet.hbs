@@ -4,6 +4,8 @@
   {{!-- Sheet Tab Navigation --}}
   <nav class="sheet-tabs tabs" data-group="primary">
     <a class="item" data-tab="attributes">Attributs</a>
+    <a class="item" data-tab="historique">Historique</a>
+    <a class="item" data-tab="equipements">Équipements</a>
   </nav>
 
   {{!-- Sheet Body --}}
@@ -12,17 +14,22 @@
     <div class="tab" data-group="primary" data-tab="attributes">
       {{> "systems/fvtt-svnsea-v3/templates/sheets/partials/profile.hbs"}}
       {{> "systems/fvtt-svnsea-v3/templates/sheets/partials/skills.hbs"}}
+    </div>
 
-      <div class="content-row">
-        <div class="content-column col-double">
-          {{!-- Avantages Section --}}
-          {{> "systems/fvtt-svnsea-v3/templates/sheets/partials/avantage.hbs"}}
-        </div>
+    {{!-- Historique Tab --}}
+    <div class="tab" data-group="primary" data-tab="historique">
+      <div class="content-column">
+        {{> "systems/fvtt-svnsea-v3/templates/sheets/partials/avantage.hbs"}}
+      </div>
+      <div class="content-column" style="margin-top: 20px;">
+        {{> "systems/fvtt-svnsea-v3/templates/sheets/partials/travers.hbs"}}
+      </div>
+    </div>
 
-        <div class="content-column col-flex">
-          {{!-- Equipements Section --}}
-          {{> "systems/fvtt-svnsea-v3/templates/sheets/partials/equipement.hbs"}}
-        </div>
+    {{!-- Equipements Tab --}}
+    <div class="tab" data-group="primary" data-tab="equipements">
+      <div class="content-column">
+        {{> "systems/fvtt-svnsea-v3/templates/sheets/partials/equipement.hbs"}}
       </div>
     </div>
   </section>
