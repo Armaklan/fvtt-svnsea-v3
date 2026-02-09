@@ -4,7 +4,7 @@
 export class PlayerCharacterSheet extends ActorSheet {
   /** @override */
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["fvtt-svnsea-v3", "sheet", "actor"],
       template: "systems/fvtt-svnsea-v3/templates/sheets/actor-sheet.hbs",
       width: 1000,
@@ -359,7 +359,7 @@ export class PlayerCharacterSheet extends ActorSheet {
     if (skill) {
       const field = `system.skills.${skill}.value`;
       // Allow toggling off if clicking on the same value
-      const currentValue = getProperty(this.actor, field);
+      const currentValue = foundry.utils.getProperty(this.actor, field);
       const newValue = (currentValue === index && index === 1) ? 0 : index;
       await this.actor.update({ [field]: newValue });
     }
@@ -378,7 +378,7 @@ export class PlayerCharacterSheet extends ActorSheet {
 
     if (skill) {
       const field = `system.skills.${skill}.specialized`;
-      const currentValue = getProperty(this.actor, field);
+      const currentValue = foundry.utils.getProperty(this.actor, field);
       await this.actor.update({ [field]: !currentValue });
     }
   }
@@ -393,7 +393,7 @@ export class PlayerCharacterSheet extends ActorSheet {
     const element = event.currentTarget;
     const parent = $(element).closest(".skill-item");
     const skillKey = parent.data("skill");
-    const skill = getProperty(this.actor, `system.skills.${skillKey}`);
+    const skill = foundry.utils.getProperty(this.actor, `system.skills.${skillKey}`);
     const attributes = (this.actor as any).system.attributes;
 
     const attributeLabels: Record<string, string> = {

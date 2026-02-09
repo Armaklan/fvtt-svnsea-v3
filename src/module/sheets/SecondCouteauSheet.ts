@@ -4,7 +4,7 @@
 export class SecondCouteauSheet extends ActorSheet {
   /** @override */
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["fvtt-svnsea-v3", "sheet", "actor", "second-couteau"],
       template: "systems/fvtt-svnsea-v3/templates/sheets/second-couteau-sheet.hbs",
       width: 500,

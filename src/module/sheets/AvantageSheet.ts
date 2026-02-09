@@ -4,7 +4,7 @@
 export class AvantageSheet extends ItemSheet {
   /** @override */
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["fvtt-svnsea-v3", "sheet", "item", "avantage"],
       template: "systems/fvtt-svnsea-v3/templates/sheets/item-avantage-sheet.hbs",
       width: 520,

@@ -7,7 +7,7 @@ import { PlayerCharacterSheet } from "./PlayerCharacterSheet";
 export class LieutenantSheet extends PlayerCharacterSheet {
   /** @override */
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["fvtt-svnsea-v3", "sheet", "actor", "lieutenant"],
       template: "systems/fvtt-svnsea-v3/templates/sheets/actor-sheet.hbs",
     });
