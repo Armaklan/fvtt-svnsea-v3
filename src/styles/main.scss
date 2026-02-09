@@ -542,6 +542,81 @@
     margin-bottom: -2px;
   }
 
+  /* Sorcellerie Tab specific */
+  .sorcellerie-config {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+    background: rgba(255, 255, 255, 0.5);
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+
+    .sorcellerie-row {
+      display: flex;
+      flex-direction: row;
+      gap: 30px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .form-group {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 0;
+
+      label {
+        font-weight: bold;
+        flex: 0 0 auto;
+      }
+
+      select {
+        flex: 0 0 200px;
+        padding: 5px;
+        border-radius: 4px;
+        border: 1px solid var(--color-border);
+      }
+    }
+
+    .contrecoup-section {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+
+      label {
+        font-weight: bold;
+        flex: 0 0 auto;
+      }
+
+      .contrecoup-circles {
+        display: flex;
+        gap: 5px;
+
+        .contrecoup-circle {
+          font-size: 1.2em;
+          color: var(--color-primary);
+          cursor: pointer;
+          transition: all 0.2s ease;
+
+          &:hover {
+            transform: scale(1.2);
+            color: var(--color-accent);
+          }
+
+          &.fas {
+            color: var(--color-primary);
+          }
+
+          &.far {
+            color: var(--color-border);
+          }
+        }
+      }
+    }
+  }
+
   /* Sheet Body */
   .sheet-body {
     padding-top: 20px;
@@ -582,8 +657,8 @@
     box-shadow: 0 5px 15px var(--color-shadow);
   }
 
-  /* Avantages, Travers and Equipements Sections */
-  .avantages-header, .equipements-header, .travers-header {
+  /* Avantages, Travers, Equipements and Sorcellerie Sections */
+  .avantages-header, .equipements-header, .travers-header, .sorcellerie-header, .pouvoirs-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -594,7 +669,7 @@
     border-radius: 7px 7px 0 0;
   }
 
-  .avantages-title, .equipements-title, .travers-title {
+  .avantages-title, .equipements-title, .travers-title, .sorcellerie-title, .pouvoirs-title {
     margin: 0;
     font-size: 1.4em;
     font-weight: bold;
@@ -667,7 +742,16 @@
     margin: 0;
   }
 
-  .avantage-item, .equipement-item, .travers-item {
+  .pouvoirs-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  .avantage-item, .equipement-item, .travers-item, .pouvoir-item {
     display: flex;
     flex-direction: column;
     padding: 8px 10px;
@@ -680,14 +764,14 @@
     height: 100%;
   }
 
-  .avantage-item:hover, .equipement-item:hover, .travers-item:hover {
+  .avantage-item:hover, .equipement-item:hover, .travers-item:hover, .pouvoir-item:hover {
     background-color: rgba(212, 175, 55, 0.05);
     border-color: var(--color-accent);
     transform: translateX(3px);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
   }
 
-  .avantage-row, .travers-row, .equipement-row {
+  .avantage-row, .travers-row, .equipement-row, .pouvoir-row {
     display: flex;
     align-items: center;
     width: 100%;
@@ -708,14 +792,14 @@
     }
   }
 
-  .avantage-name, .equipement-name, .travers-name {
+  .avantage-name, .equipement-name, .travers-name, .pouvoir-name {
     flex: 1;
     margin-right: 5px;
     font-weight: bold;
     font-size: 1.1em;
   }
 
-  .avantage-description, .travers-description {
+  .avantage-description, .travers-description, .pouvoir-description {
     width: 100%;
     margin-top: 5px;
     font-style: italic;

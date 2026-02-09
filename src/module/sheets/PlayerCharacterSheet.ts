@@ -19,15 +19,17 @@ export class PlayerCharacterSheet extends ActorSheet {
 
     // Calculer les seuils de garde pour chaque attribut
     const attributes = data.actor.system.attributes;
-    for (let attr in attributes) {
-      const value = attributes[attr].value;
-      // Formule : Seuil = 10 - valeur (si valeur entre 1 et 5)
-      // Attribut 1 => Garde 9
-      // Attribut 2 => Garde 8
-      // Attribut 3 => Garde 7
-      // Attribut 4 => Garde 6
-      // Attribut 5 => Garde 5
-      attributes[attr].seuil = 10 - value;
+    if (attributes) {
+      for (let attr in attributes) {
+        const value = attributes[attr].value;
+        // Formule : Seuil = 10 - valeur (si valeur entre 1 et 5)
+        // Attribut 1 => Garde 9
+        // Attribut 2 => Garde 8
+        // Attribut 3 => Garde 7
+        // Attribut 4 => Garde 6
+        // Attribut 5 => Garde 5
+        attributes[attr].seuil = 10 - value;
+      }
     }
 
     // Calcul des blessures
@@ -58,6 +60,39 @@ export class PlayerCharacterSheet extends ActorSheet {
       blessures.push(group);
     }
     data.blessures = blessures;
+    
+    // Vérifier si l'onglet Sorcellerie doit être affiché
+    // Uniquement pour personnages, scélérats ou lieutenants ayant un cercle en Sorcellerie
+    const actorType = data.actor.type;
+    const isRelevantType = ['playerCharacter', 'scelerat', 'lieutenant'].includes(actorType);
+    const hasSorcellerie = (data.actor.system.skills?.sorcellerie?.value || 0) > 0;
+    
+    data.showSorcellerieTab = isRelevantType && hasSorcellerie;
+
+    // Config pour la sorcellerie
+    data.config = {
+      sorcellerieTypes: {
+        "porte": "Porte",
+        "sorte": "Sorte",
+        "hexen": "Hexen",
+        "glamour": "Glamour",
+        "sanderis": "Sanderis",
+        "alquemie": "Alquemie"
+      }
+    };
+
+    // Préparer le contrecoup si nécessaire
+    if (data.actor.system.sorcellerie?.type === "sorte") {
+      const contrecoupValue = data.actor.system.sorcellerie.contrecoup || 0;
+      const contrecoup = [];
+      for (let i = 1; i <= 10; i++) {
+        contrecoup.push({
+          index: i,
+          filled: contrecoupValue >= i
+        });
+      }
+      data.contrecoup = contrecoup;
+    }
 
     return data;
   }
@@ -96,6 +131,24 @@ export class PlayerCharacterSheet extends ActorSheet {
     // Gestion des blessures
     html.find('.blessure-normal').click(this._onBlessureNormalClick.bind(this));
     html.find('.blessure-dramatique').click(this._onBlessureDramatiqueClick.bind(this));
+
+    // Gestion du contrecoup
+    html.find('.contrecoup-circle').click(this._onContrecoupClick.bind(this));
+  }
+
+  /**
+   * Handle clicking on a contrecoup circle
+   * @param {Event} event   The originating click event
+   * @private
+   */
+  private async _onContrecoupClick(event: JQuery.ClickEvent) {
+    event.preventDefault();
+    const index = Number(event.currentTarget.dataset.index);
+    const system = (this.actor as any).system;
+    const currentValue = Number(system.sorcellerie?.contrecoup) || 0;
+
+    const newValue = currentValue === index ? index - 1 : index;
+    await this.actor.update({ "system.sorcellerie.contrecoup": newValue });
   }
 
   /**
@@ -202,7 +255,7 @@ export class PlayerCharacterSheet extends ActorSheet {
    */
   private _onItemEdit(event: JQuery.ClickEvent) {
     event.preventDefault();
-    const element = $(event.currentTarget).closest(".avantage-item, .equipement-item, .travers-item");
+    const element = $(event.currentTarget).closest(".avantage-item, .equipement-item, .travers-item, .pouvoir-item");
     const itemId = element.data("item-id");
     const item = this.actor.items.get(itemId);
     item?.sheet?.render(true);
@@ -242,6 +295,14 @@ export class PlayerCharacterSheet extends ActorSheet {
           description: ""
         }
       };
+    } else if (type === "pouvoir") {
+      itemData = {
+        name: `Nouveau Pouvoir`,
+        type: type,
+        system: {
+          description: ""
+        }
+      };
     } else {
       // For other types, include value
       itemData = {
@@ -260,7 +321,7 @@ export class PlayerCharacterSheet extends ActorSheet {
    */
   private async _onItemDelete(event: JQuery.ClickEvent) {
     event.preventDefault();
-    const element = $(event.currentTarget).closest(".avantage-item, .equipement-item, .travers-item");
+    const element = $(event.currentTarget).closest(".avantage-item, .equipement-item, .travers-item, .pouvoir-item");
     const itemId = element.data("item-id");
     await this.actor.deleteEmbeddedDocuments("Item", [itemId]);
   }

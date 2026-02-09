@@ -3,6 +3,7 @@ import {PlayerCharacterSheet} from "./module/sheets/PlayerCharacterSheet";
 import {SecondCouteauSheet} from "./module/sheets/SecondCouteauSheet";
 import {LieutenantSheet} from "./module/sheets/LieutenantSheet";
 import {AvantageSheet} from "./module/sheets/AvantageSheet";
+import {PouvoirSheet} from "./module/sheets/PouvoirSheet";
 import {TraversSheet} from "./module/sheets/TraversSheet";
 
 Hooks.once("init", async () => {
@@ -28,6 +29,10 @@ Hooks.once("init", async () => {
         types: ["avantage"],
         makeDefault: true
     });
+    Items.registerSheet("fvtt-svnsea-v3", PouvoirSheet, {
+        types: ["pouvoir"],
+        makeDefault: true
+    });
     Items.registerSheet("fvtt-svnsea-v3", TraversSheet, {
         types: ["travers"],
         makeDefault: true
@@ -41,6 +46,7 @@ Hooks.once("init", async () => {
         "systems/fvtt-svnsea-v3/templates/sheets/partials/header.hbs",
         "systems/fvtt-svnsea-v3/templates/sheets/partials/profile.hbs",
         "systems/fvtt-svnsea-v3/templates/sheets/partials/skills.hbs",
+        "systems/fvtt-svnsea-v3/templates/sheets/partials/sorcellerie.hbs",
         "systems/fvtt-svnsea-v3/templates/sheets/second-couteau-sheet.hbs"
     ]);
 

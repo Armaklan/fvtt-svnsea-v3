@@ -1,0 +1,53 @@
+<header class="sorcellerie-header">
+  <h3 class="sorcellerie-title">Sorcellerie</h3>
+</header>
+
+<div class="sorcellerie-config">
+  <div class="sorcellerie-row">
+    <div class="form-group">
+      <label>Type de magie</label>
+      <select name="system.sorcellerie.type">
+        {{selectOptions config.sorcellerieTypes selected=actor.system.sorcellerie.type}}
+      </select>
+    </div>
+
+    {{#if (eq actor.system.sorcellerie.type "sorte")}}
+      <div class="contrecoup-section">
+        <label>Contrecoup</label>
+        <div class="contrecoup-circles">
+          {{#each contrecoup}}
+            <i class="far fa-circle contrecoup-circle {{#if this.filled}}fas{{else}}far{{/if}}" data-index="{{this.index}}"></i>
+          {{/each}}
+        </div>
+      </div>
+    {{/if}}
+  </div>
+</div>
+
+<header class="pouvoirs-header">
+  <h3 class="pouvoirs-title">Pouvoirs</h3>
+  <div class="item-controls">
+    <a class="item-control item-create" title="Créer un Pouvoir" data-type="pouvoir"><i class="fas fa-plus"></i> Ajouter un Pouvoir</a>
+  </div>
+</header>
+
+<ol class="pouvoirs-list">
+  {{#each actor.items as |item|}}
+    {{#if (eq item.type "pouvoir")}}
+      <li class="pouvoir-item" data-item-id="{{item._id}}">
+        <div class="pouvoir-row">
+          <div class="pouvoir-name">
+            <span>{{item.name}}</span>
+          </div>
+          <div class="item-controls">
+            <a class="item-control item-edit" title="Modifier le Pouvoir"><i class="fas fa-edit"></i></a>
+            <a class="item-control item-delete" title="Supprimer le Pouvoir"><i class="fas fa-trash"></i></a>
+          </div>
+        </div>
+        <div class="pouvoir-description">
+          {{{item.system.description}}}
+        </div>
+      </li>
+    {{/if}}
+  {{/each}}
+</ol>

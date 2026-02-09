@@ -3,6 +3,10 @@
     "types": ["playerCharacter", "scelerat", "secondCouteau", "lieutenant"],
     "playerCharacter": {
       "type": "playerCharacter",
+      "sorcellerie": {
+        "type": "porte",
+        "contrecoup": 0
+      },
       "attributes": {
         "esprit": {
           "value": 1
@@ -116,6 +120,10 @@
     },
     "scelerat": {
       "type": "scelerat",
+      "sorcellerie": {
+        "type": "porte",
+        "contrecoup": 0
+      },
       "attributes": {
         "esprit": {
           "value": 1
@@ -235,6 +243,10 @@
     },
     "lieutenant": {
       "type": "lieutenant",
+      "sorcellerie": {
+        "type": "porte",
+        "contrecoup": 0
+      },
       "attributes": {
         "esprit": {
           "value": 1
@@ -348,10 +360,14 @@
     }
   },
   "Item": {
-    "types": ["avantage", "equipements", "travers"],
+    "types": ["avantage", "equipements", "travers", "pouvoir"],
     "avantage": {
       "name": "",
       "type": "passif",
+      "description": ""
+    },
+    "pouvoir": {
+      "name": "",
       "description": ""
     },
     "equipements": {

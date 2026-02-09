@@ -1,0 +1,13 @@
+<form class="{{cssClass}}" autocomplete="off">
+    <header class="sheet-header">
+        <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
+        <h1><input name="name" type="text" value="{{item.name}}" placeholder="Nom du pouvoir"/></h1>
+    </header>
+
+    <div class="sheet-content">
+        <div class="form-group">
+            <label>Description</label>
+            {{editor item.system.description target="system.description" button=true owner=owner editable=editable}}
+        </div>
+    </div>
+</form>

@@ -6,6 +6,9 @@
     <a class="item" data-tab="attributes">Attributs</a>
     <a class="item" data-tab="historique">Historique</a>
     <a class="item" data-tab="equipements">Équipements</a>
+    {{#if showSorcellerieTab}}
+      <a class="item" data-tab="sorcellerie">Sorcellerie</a>
+    {{/if}}
   </nav>
 
   {{!-- Sheet Body --}}
@@ -32,5 +35,14 @@
         {{> "systems/fvtt-svnsea-v3/templates/sheets/partials/equipement.hbs"}}
       </div>
     </div>
+    
+    {{!-- Sorcellerie Tab --}}
+    {{#if showSorcellerieTab}}
+      <div class="tab" data-group="primary" data-tab="sorcellerie">
+        <div class="content-column">
+          {{> "systems/fvtt-svnsea-v3/templates/sheets/partials/sorcellerie.hbs"}}
+        </div>
+      </div>
+    {{/if}}
   </section>
 </form>
