@@ -8,7 +8,7 @@
       <div class="skill-roll">
         <i class="fas fa-dice skill-roll-dice" title="Lancer un test"></i>
       </div>
-      <label>Arme de tir</label>
+      <label>Arme de tir {{#if (eq variante "standard")}}({{actor.system.skills.armeDeTir.seuil}}){{/if}}</label>
       <div class="skill-circles">
         {{#times 5}}
           <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.armeDeTir.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
@@ -23,7 +23,7 @@
       <div class="skill-roll">
         <i class="fas fa-dice skill-roll-dice" title="Lancer un test"></i>
       </div>
-      <label>Armes blanches</label>
+      <label>Armes blanches {{#if (eq variante "standard")}}({{actor.system.skills.armesBlanches.seuil}}){{/if}}</label>
       <div class="skill-circles">
         {{#times 5}}
           <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.armesBlanches.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
@@ -38,7 +38,7 @@
       <div class="skill-roll">
         <i class="fas fa-dice skill-roll-dice" title="Lancer un test"></i>
       </div>
-      <label>Athlétisme</label>
+      <label>Athlétisme {{#if (eq variante "standard")}}({{actor.system.skills.athletisme.seuil}}){{/if}}</label>
       <div class="skill-circles">
         {{#times 5}}
           <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.athletisme.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
@@ -53,7 +53,7 @@
       <div class="skill-roll">
         <i class="fas fa-dice skill-roll-dice" title="Lancer un test"></i>
       </div>
-      <label>Empathie</label>
+      <label>Empathie {{#if (eq variante "standard")}}({{actor.system.skills.empathie.seuil}}){{/if}}</label>
       <div class="skill-circles">
         {{#times 5}}
           <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.empathie.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
@@ -68,7 +68,7 @@
       <div class="skill-roll">
         <i class="fas fa-dice skill-roll-dice" title="Lancer un test"></i>
       </div>
-      <label>Furtivité</label>
+      <label>Furtivité {{#if (eq variante "standard")}}({{actor.system.skills.furtivite.seuil}}){{/if}}</label>
       <div class="skill-circles">
         {{#times 5}}
           <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.furtivite.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
@@ -83,7 +83,7 @@
       <div class="skill-roll">
         <i class="fas fa-dice skill-roll-dice" title="Lancer un test"></i>
       </div>
-      <label>Ingénierie</label>
+      <label>Ingénierie {{#if (eq variante "standard")}}({{actor.system.skills.ingenierie.seuil}}){{/if}}</label>
       <div class="skill-circles">
         {{#times 5}}
           <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.ingenierie.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
@@ -98,7 +98,7 @@
       <div class="skill-roll">
         <i class="fas fa-dice skill-roll-dice" title="Lancer un test"></i>
       </div>
-      <label>Intrigue</label>
+      <label>Intrigue {{#if (eq variante "standard")}}({{actor.system.skills.intrigue.seuil}}){{/if}}</label>
       <div class="skill-circles">
         {{#times 5}}
           <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.intrigue.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
@@ -113,7 +113,7 @@
       <div class="skill-roll">
         <i class="fas fa-dice skill-roll-dice" title="Lancer un test"></i>
       </div>
-      <label>Larcin</label>
+      <label>Larcin {{#if (eq variante "standard")}}({{actor.system.skills.larcin.seuil}}){{/if}}</label>
       <div class="skill-circles">
         {{#times 5}}
           <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.larcin.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
@@ -128,7 +128,7 @@
       <div class="skill-roll">
         <i class="fas fa-dice skill-roll-dice" title="Lancer un test"></i>
       </div>
-      <label>Légendes</label>
+      <label>Légendes {{#if (eq variante "standard")}}({{actor.system.skills.legendes.seuil}}){{/if}}</label>
       <div class="skill-circles">
         {{#times 5}}
           <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.legendes.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
@@ -143,7 +143,7 @@
       <div class="skill-roll">
         <i class="fas fa-dice skill-roll-dice" title="Lancer un test"></i>
       </div>
-      <label>Lettre</label>
+      <label>Lettre {{#if (eq variante "standard")}}({{actor.system.skills.lettre.seuil}}){{/if}}</label>
       <div class="skill-circles">
         {{#times 5}}
           <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.lettre.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
@@ -158,7 +158,7 @@
       <div class="skill-roll">
         <i class="fas fa-dice skill-roll-dice" title="Lancer un test"></i>
       </div>
-      <label>Navigation</label>
+      <label>Navigation {{#if (eq variante "standard")}}({{actor.system.skills.navigation.seuil}}){{/if}}</label>
       <div class="skill-circles">
         {{#times 5}}
           <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.navigation.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
@@ -173,7 +173,7 @@
       <div class="skill-roll">
         <i class="fas fa-dice skill-roll-dice" title="Lancer un test"></i>
       </div>
-      <label>Persuasion</label>
+      <label>Persuasion {{#if (eq variante "standard")}}({{actor.system.skills.persuasion.seuil}}){{/if}}</label>
       <div class="skill-circles">
         {{#times 5}}
           <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.persuasion.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
@@ -188,7 +188,7 @@
       <div class="skill-roll">
         <i class="fas fa-dice skill-roll-dice" title="Lancer un test"></i>
       </div>
-      <label>Protocole</label>
+      <label>Protocole {{#if (eq variante "standard")}}({{actor.system.skills.protocole.seuil}}){{/if}}</label>
       <div class="skill-circles">
         {{#times 5}}
           <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.protocole.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
@@ -203,7 +203,7 @@
       <div class="skill-roll">
         <i class="fas fa-dice skill-roll-dice" title="Lancer un test"></i>
       </div>
-      <label>Recherche</label>
+      <label>Recherche {{#if (eq variante "standard")}}({{actor.system.skills.recherche.seuil}}){{/if}}</label>
       <div class="skill-circles">
         {{#times 5}}
           <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.recherche.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
@@ -218,7 +218,7 @@
       <div class="skill-roll">
         <i class="fas fa-dice skill-roll-dice" title="Lancer un test"></i>
       </div>
-      <label>Religion</label>
+      <label>Religion {{#if (eq variante "standard")}}({{actor.system.skills.religion.seuil}}){{/if}}</label>
       <div class="skill-circles">
         {{#times 5}}
           <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.religion.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
@@ -233,7 +233,7 @@
       <div class="skill-roll">
         <i class="fas fa-dice skill-roll-dice" title="Lancer un test"></i>
       </div>
-      <label>Représentation</label>
+      <label>Représentation {{#if (eq variante "standard")}}({{actor.system.skills.representation.seuil}}){{/if}}</label>
       <div class="skill-circles">
         {{#times 5}}
           <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.representation.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
@@ -248,7 +248,7 @@
       <div class="skill-roll">
         <i class="fas fa-dice skill-roll-dice" title="Lancer un test"></i>
       </div>
-      <label>Science</label>
+      <label>Science {{#if (eq variante "standard")}}({{actor.system.skills.science.seuil}}){{/if}}</label>
       <div class="skill-circles">
         {{#times 5}}
           <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.science.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
@@ -263,7 +263,7 @@
       <div class="skill-roll">
         <i class="fas fa-dice skill-roll-dice" title="Lancer un test"></i>
       </div>
-      <label>Sorcellerie</label>
+      <label>Sorcellerie {{#if (eq variante "standard")}}({{actor.system.skills.sorcellerie.seuil}}){{/if}}</label>
       <div class="skill-circles">
         {{#times 5}}
           <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.sorcellerie.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
@@ -278,7 +278,7 @@
       <div class="skill-roll">
         <i class="fas fa-dice skill-roll-dice" title="Lancer un test"></i>
       </div>
-      <label>Stratégie</label>
+      <label>Stratégie {{#if (eq variante "standard")}}({{actor.system.skills.strategie.seuil}}){{/if}}</label>
       <div class="skill-circles">
         {{#times 5}}
           <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.strategie.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
@@ -293,7 +293,7 @@
       <div class="skill-roll">
         <i class="fas fa-dice skill-roll-dice" title="Lancer un test"></i>
       </div>
-      <label>Subornation</label>
+      <label>Subornation {{#if (eq variante "standard")}}({{actor.system.skills.subornation.seuil}}){{/if}}</label>
       <div class="skill-circles">
         {{#times 5}}
           <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.subornation.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
@@ -308,7 +308,7 @@
       <div class="skill-roll">
         <i class="fas fa-dice skill-roll-dice" title="Lancer un test"></i>
       </div>
-      <label>Survie</label>
+      <label>Survie {{#if (eq variante "standard")}}({{actor.system.skills.survie.seuil}}){{/if}}</label>
       <div class="skill-circles">
         {{#times 5}}
           <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.survie.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>

@@ -50,6 +50,29 @@ Hooks.once("init", async () => {
         "systems/fvtt-svnsea-v3/templates/sheets/second-couteau-sheet.hbs"
     ]);
 
+    // Register system settings
+    game.settings.register("fvtt-svnsea-v3", "modificateurSeuil", {
+        name: "Modificateur de seuil",
+        hint: "Ce paramètre est soustrait au seuil de garde.",
+        scope: "world",
+        config: true,
+        type: Number,
+        default: 0
+    });
+
+    game.settings.register("fvtt-svnsea-v3", "variante", {
+        name: "Variante",
+        hint: "Choisir entre la version Standard ou Maison des règles.",
+        scope: "world",
+        config: true,
+        type: String,
+        choices: {
+            "standard": "Standard",
+            "maison": "Maison"
+        },
+        default: "standard"
+    });
+
     // Handlebars helpers
     Handlebars.registerHelper('times', function(n, block) {
         let accum = '';
@@ -60,5 +83,9 @@ Hooks.once("init", async () => {
 
     Handlebars.registerHelper('lte', function(v1, v2) {
         return v1 <= v2;
+    });
+
+    Handlebars.registerHelper('eq', function(v1, v2) {
+        return v1 === v2;
     });
 });

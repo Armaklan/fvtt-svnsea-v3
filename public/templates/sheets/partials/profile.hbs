@@ -6,7 +6,9 @@
         <i class="far fa-circle attribute-circle {{#if (lte this ../actor.system.attributes.esprit.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
       {{/times}}
     </div>
-    <div class="attribute-seuil">Seuil {{actor.system.attributes.esprit.seuil}}</div>
+    {{#if (eq variante "maison")}}
+      <div class="attribute-seuil">Seuil {{actor.system.attributes.esprit.seuil}}</div>
+    {{/if}}
     <input type="hidden" name="system.attributes.esprit.value" value="{{actor.system.attributes.esprit.value}}" data-dtype="Number"/>
   </div>
   <div class="profile-item" data-attribute="finesse">
@@ -16,7 +18,9 @@
         <i class="far fa-circle attribute-circle {{#if (lte this ../actor.system.attributes.finesse.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
       {{/times}}
     </div>
-    <div class="attribute-seuil">Seuil {{actor.system.attributes.finesse.seuil}}</div>
+    {{#if (eq variante "maison")}}
+      <div class="attribute-seuil">Seuil {{actor.system.attributes.finesse.seuil}}</div>
+    {{/if}}
     <input type="hidden" name="system.attributes.finesse.value" value="{{actor.system.attributes.finesse.value}}" data-dtype="Number"/>
   </div>
   <div class="profile-item" data-attribute="gaillardise">
@@ -26,7 +30,9 @@
         <i class="far fa-circle attribute-circle {{#if (lte this ../actor.system.attributes.gaillardise.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
       {{/times}}
     </div>
-    <div class="attribute-seuil">Seuil {{actor.system.attributes.gaillardise.seuil}}</div>
+    {{#if (eq variante "maison")}}
+      <div class="attribute-seuil">Seuil {{actor.system.attributes.gaillardise.seuil}}</div>
+    {{/if}}
     <input type="hidden" name="system.attributes.gaillardise.value" value="{{actor.system.attributes.gaillardise.value}}" data-dtype="Number"/>
   </div>
   <div class="profile-item" data-attribute="resolution">
@@ -36,7 +42,9 @@
         <i class="far fa-circle attribute-circle {{#if (lte this ../actor.system.attributes.resolution.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
       {{/times}}
     </div>
-    <div class="attribute-seuil">Seuil {{actor.system.attributes.resolution.seuil}}</div>
+    {{#if (eq variante "maison")}}
+      <div class="attribute-seuil">Seuil {{actor.system.attributes.resolution.seuil}}</div>
+    {{/if}}
     <input type="hidden" name="system.attributes.resolution.value" value="{{actor.system.attributes.resolution.value}}" data-dtype="Number"/>
   </div>
   <div class="profile-item" data-attribute="panache">
@@ -46,7 +54,9 @@
         <i class="far fa-circle attribute-circle {{#if (lte this ../actor.system.attributes.panache.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
       {{/times}}
     </div>
-    <div class="attribute-seuil">Seuil {{actor.system.attributes.panache.seuil}}</div>
+    {{#if (eq variante "maison")}}
+      <div class="attribute-seuil">Seuil {{actor.system.attributes.panache.seuil}}</div>
+    {{/if}}
     <input type="hidden" name="system.attributes.panache.value" value="{{actor.system.attributes.panache.value}}" data-dtype="Number"/>
   </div>
 </div>
@@ -64,7 +74,9 @@
         <i class="far fa-circle {{#if (lte this ../actor.system.combatAttributes.attaque.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
       {{/times}}
     </div>
-    <div class="attribute-seuil">Seuil {{actor.system.combatAttributes.attaque.seuil}}</div>
+    {{#if (eq variante "maison")}}
+      <div class="attribute-seuil">Seuil {{actor.system.combatAttributes.attaque.seuil}}</div>
+    {{/if}}
   </div>
   <div class="profile-item combat" data-attribute="defense">
     <label>Défense</label>
@@ -78,7 +90,9 @@
         <i class="far fa-circle {{#if (lte this ../actor.system.combatAttributes.defense.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
       {{/times}}
     </div>
-    <div class="attribute-seuil">Seuil {{actor.system.combatAttributes.defense.seuil}}</div>
+    {{#if (eq variante "maison")}}
+      <div class="attribute-seuil">Seuil {{actor.system.combatAttributes.defense.seuil}}</div>
+    {{/if}}
   </div>
   <div class="profile-item combat" data-attribute="mouvement">
     <label>Mouvement</label>
@@ -92,7 +106,9 @@
         <i class="far fa-circle {{#if (lte this ../actor.system.combatAttributes.mouvement.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
       {{/times}}
     </div>
-    <div class="attribute-seuil">Seuil {{actor.system.combatAttributes.mouvement.seuil}}</div>
+    {{#if (eq variante "maison")}}
+      <div class="attribute-seuil">Seuil {{actor.system.combatAttributes.mouvement.seuil}}</div>
+    {{/if}}
   </div>
   <div class="profile-item combat" data-attribute="degats">
     <label>Dégâts</label>
@@ -106,7 +122,9 @@
         <i class="far fa-circle {{#if (lte this ../actor.system.combatAttributes.degats.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
       {{/times}}
     </div>
-    <div class="attribute-seuil">Seuil {{actor.system.combatAttributes.degats.seuil}}</div>
+    {{#if (eq variante "maison")}}
+      <div class="attribute-seuil">Seuil {{actor.system.combatAttributes.degats.seuil}}</div>
+    {{/if}}
   </div>
   <div class="profile-item combat" data-attribute="robustesse">
     <label>Robustesse</label>
@@ -120,6 +138,8 @@
         <i class="far fa-circle {{#if (lte this ../actor.system.combatAttributes.robustesse.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
       {{/times}}
     </div>
-    <div class="attribute-seuil">Seuil {{actor.system.combatAttributes.robustesse.seuil}}</div>
+    {{#if (eq variante "maison")}}
+      <div class="attribute-seuil">Seuil {{actor.system.combatAttributes.robustesse.seuil}}</div>
+    {{/if}}
   </div>
 </div>

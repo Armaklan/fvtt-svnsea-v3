@@ -19,11 +19,24 @@ export class PlayerCharacterSheet extends ActorSheet {
 
     // Calculer les seuils de garde pour chaque attribut
     const attributes = data.actor.system.attributes;
+    const thresholdModifier = (game.settings.get("fvtt-svnsea-v3", "modificateurSeuil") as number) || 0;
+    const variante = game.settings.get("fvtt-svnsea-v3", "variante") as string;
+    data.variante = variante;
+
     if (attributes) {
       for (let attr in attributes) {
         const value = attributes[attr].value;
-        // Formule : Seuil = 10 - valeur (si valeur entre 1 et 5)
-        attributes[attr].seuil = 10 - value;
+        // Formule : Seuil = (10 - valeur) - modificateur
+        attributes[attr].seuil = (10 - value) - thresholdModifier;
+      }
+    }
+
+    // Calculer les seuils de garde pour chaque compétence si variante standard
+    const skills = data.actor.system.skills;
+    if (variante === 'standard' && skills) {
+      for (let sKey in skills) {
+        const sValue = skills[sKey].value || 0;
+        skills[sKey].seuil = (10 - sValue) - thresholdModifier;
       }
     }
 
@@ -504,6 +517,7 @@ export class PlayerCharacterSheet extends ActorSheet {
 
             let attribute = attributes[attrKey];
             let attrLabel = attributeLabels[attrKey] || attrKey;
+            const thresholdModifier = (game.settings.get("fvtt-svnsea-v3", "modificateurSeuil") as number) || 0;
             if (!attribute && combatAttributes) {
               const combatAttr = combatAttributes[attrKey];
               if (combatAttr) {
@@ -514,7 +528,8 @@ export class PlayerCharacterSheet extends ActorSheet {
             }
             const skillValue = skill.value;
             const attrValue = attribute.value;
-            const seuil = attribute.seuil;
+            const variante = game.settings.get("fvtt-svnsea-v3", "variante") as string;
+            const seuil = variante === 'standard' ? (10 - skillValue) - thresholdModifier : attribute.seuil;
             const dramatiques = (this.actor as any).system.blessures?.dramatiques || 0;
             const isSpecialized = skill.specialized || false;
 
