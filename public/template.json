@@ -24,6 +24,23 @@
           "value": 1
         }
       },
+      "combatAttributes": {
+        "attaque": {
+          "linkedAttribute": "panache"
+        },
+        "defense": {
+          "linkedAttribute": "finesse"
+        },
+        "mouvement": {
+          "linkedAttribute": "esprit"
+        },
+        "degats": {
+          "linkedAttribute": "gaillardise"
+        },
+        "robustesse": {
+          "linkedAttribute": "resolution"
+        }
+      },
       "skills": {
         "armeDeTir": {
           "value": 0,
@@ -139,6 +156,23 @@
         },
         "panache": {
           "value": 1
+        }
+      },
+      "combatAttributes": {
+        "attaque": {
+          "linkedAttribute": "panache"
+        },
+        "defense": {
+          "linkedAttribute": "finesse"
+        },
+        "mouvement": {
+          "linkedAttribute": "esprit"
+        },
+        "degats": {
+          "linkedAttribute": "gaillardise"
+        },
+        "robustesse": {
+          "linkedAttribute": "resolution"
         }
       },
       "skills": {
@@ -262,6 +296,23 @@
         },
         "panache": {
           "value": 1
+        }
+      },
+      "combatAttributes": {
+        "attaque": {
+          "linkedAttribute": "panache"
+        },
+        "defense": {
+          "linkedAttribute": "finesse"
+        },
+        "mouvement": {
+          "linkedAttribute": "esprit"
+        },
+        "degats": {
+          "linkedAttribute": "gaillardise"
+        },
+        "robustesse": {
+          "linkedAttribute": "resolution"
         }
       },
       "skills": {

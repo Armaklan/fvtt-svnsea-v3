@@ -23,19 +23,25 @@ export class PlayerCharacterSheet extends ActorSheet {
       for (let attr in attributes) {
         const value = attributes[attr].value;
         // Formule : Seuil = 10 - valeur (si valeur entre 1 et 5)
-        // Attribut 1 => Garde 9
-        // Attribut 2 => Garde 8
-        // Attribut 3 => Garde 7
-        // Attribut 4 => Garde 6
-        // Attribut 5 => Garde 5
         attributes[attr].seuil = 10 - value;
       }
     }
 
+    // Calculer les attributs de combat basés sur les attributs liés
+    const combatAttributes = data.actor.system.combatAttributes;
+    if (combatAttributes && attributes) {
+      for (let cAttr in combatAttributes) {
+        const linkedKey = combatAttributes[cAttr].linkedAttribute;
+        if (linkedKey && attributes[linkedKey]) {
+          combatAttributes[cAttr].value = attributes[linkedKey].value;
+          combatAttributes[cAttr].seuil = attributes[linkedKey].seuil;
+        }
+      }
+    }
+
     // Calcul des blessures
-    const gaillardise = attributes?.gaillardise?.value || 1;
-    const resolution = attributes?.resolution?.value || 1;
-    const baseBlessure = Math.max(gaillardise, resolution);
+    const robustesse = combatAttributes?.robustesse?.value || attributes?.resolution?.value || 1;
+    const baseBlessure = robustesse;
     const blessuresValue = data.actor.system.blessures?.value || 0;
     const dramatiquesValue = data.actor.system.blessures?.dramatiques || 0;
 
@@ -71,6 +77,13 @@ export class PlayerCharacterSheet extends ActorSheet {
 
     // Config pour la sorcellerie
     data.config = {
+      attributes: {
+        "esprit": "Esprit",
+        "finesse": "Finesse",
+        "gaillardise": "Gaillardise",
+        "resolution": "Résolution",
+        "panache": "Panache"
+      },
       sorcellerieTypes: {
         "porte": "Porte",
         "sorte": "Sorte",
@@ -395,13 +408,19 @@ export class PlayerCharacterSheet extends ActorSheet {
     const skillKey = parent.data("skill");
     const skill = foundry.utils.getProperty(this.actor, `system.skills.${skillKey}`);
     const attributes = (this.actor as any).system.attributes;
+    const combatAttributes = (this.actor as any).system.combatAttributes;
 
     const attributeLabels: Record<string, string> = {
       esprit: "Esprit",
       finesse: "Finesse",
       gaillardise: "Gaillardise",
       resolution: "Résolution",
-      panache: "Panache"
+      panache: "Panache",
+      attaque: "Attaque",
+      defense: "Défense",
+      mouvement: "Mouvement",
+      degats: "Dégâts",
+      robustesse: "Robustesse"
     };
 
     const skillLabels: Record<string, string> = {
@@ -435,6 +454,15 @@ export class PlayerCharacterSheet extends ActorSheet {
     for (let key of Object.keys(attributes)) {
       const label = attributeLabels[key] || key;
       attributeOptions += `<option value="${key}">${label}</option>`;
+    }
+
+    if (combatAttributes) {
+      attributeOptions += `<optgroup label="Combat">`;
+      for (let key of Object.keys(combatAttributes)) {
+        const label = attributeLabels[key] || key;
+        attributeOptions += `<option value="${key}">${label}</option>`;
+      }
+      attributeOptions += `</optgroup>`;
     }
 
     const template = `
@@ -474,8 +502,16 @@ export class PlayerCharacterSheet extends ActorSheet {
             const difficultyStr = html.find('[name="difficulty"]').val();
             const difficulty = difficultyStr !== "" ? parseInt(difficultyStr) : null;
 
-            const attribute = attributes[attrKey];
-            const attrLabel = attributeLabels[attrKey] || attrKey;
+            let attribute = attributes[attrKey];
+            let attrLabel = attributeLabels[attrKey] || attrKey;
+            if (!attribute && combatAttributes) {
+              const combatAttr = combatAttributes[attrKey];
+              if (combatAttr) {
+                const linkedKey = combatAttr.linkedAttribute;
+                attribute = attributes[linkedKey];
+                // Pour l'affichage dans le jet, on peut garder le label de l'attribut de combat
+              }
+            }
             const skillValue = skill.value;
             const attrValue = attribute.value;
             const seuil = attribute.seuil;

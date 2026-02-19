@@ -50,3 +50,76 @@
     <input type="hidden" name="system.attributes.panache.value" value="{{actor.system.attributes.panache.value}}" data-dtype="Number"/>
   </div>
 </div>
+
+<div class="profiles-grid combat-attributes" style="margin-top: 20px; border-top: 1px solid #7a7971; padding-top: 20px;">
+  <div class="profile-item combat" data-attribute="attaque">
+    <label>Attaque</label>
+    <div class="linked-attribute-select">
+      <select name="system.combatAttributes.attaque.linkedAttribute">
+        {{selectOptions config.attributes selected=actor.system.combatAttributes.attaque.linkedAttribute}}
+      </select>
+    </div>
+    <div class="attribute-circles">
+      {{#times 5}}
+        <i class="far fa-circle {{#if (lte this ../actor.system.combatAttributes.attaque.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
+      {{/times}}
+    </div>
+    <div class="attribute-seuil">Seuil {{actor.system.combatAttributes.attaque.seuil}}</div>
+  </div>
+  <div class="profile-item combat" data-attribute="defense">
+    <label>Défense</label>
+    <div class="linked-attribute-select">
+      <select name="system.combatAttributes.defense.linkedAttribute">
+        {{selectOptions config.attributes selected=actor.system.combatAttributes.defense.linkedAttribute}}
+      </select>
+    </div>
+    <div class="attribute-circles">
+      {{#times 5}}
+        <i class="far fa-circle {{#if (lte this ../actor.system.combatAttributes.defense.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
+      {{/times}}
+    </div>
+    <div class="attribute-seuil">Seuil {{actor.system.combatAttributes.defense.seuil}}</div>
+  </div>
+  <div class="profile-item combat" data-attribute="mouvement">
+    <label>Mouvement</label>
+    <div class="linked-attribute-select">
+      <select name="system.combatAttributes.mouvement.linkedAttribute">
+        {{selectOptions config.attributes selected=actor.system.combatAttributes.mouvement.linkedAttribute}}
+      </select>
+    </div>
+    <div class="attribute-circles">
+      {{#times 5}}
+        <i class="far fa-circle {{#if (lte this ../actor.system.combatAttributes.mouvement.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
+      {{/times}}
+    </div>
+    <div class="attribute-seuil">Seuil {{actor.system.combatAttributes.mouvement.seuil}}</div>
+  </div>
+  <div class="profile-item combat" data-attribute="degats">
+    <label>Dégâts</label>
+    <div class="linked-attribute-select">
+      <select name="system.combatAttributes.degats.linkedAttribute">
+        {{selectOptions config.attributes selected=actor.system.combatAttributes.degats.linkedAttribute}}
+      </select>
+    </div>
+    <div class="attribute-circles">
+      {{#times 5}}
+        <i class="far fa-circle {{#if (lte this ../actor.system.combatAttributes.degats.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
+      {{/times}}
+    </div>
+    <div class="attribute-seuil">Seuil {{actor.system.combatAttributes.degats.seuil}}</div>
+  </div>
+  <div class="profile-item combat" data-attribute="robustesse">
+    <label>Robustesse</label>
+    <div class="linked-attribute-select">
+      <select name="system.combatAttributes.robustesse.linkedAttribute">
+        {{selectOptions config.attributes selected=actor.system.combatAttributes.robustesse.linkedAttribute}}
+      </select>
+    </div>
+    <div class="attribute-circles">
+      {{#times 5}}
+        <i class="far fa-circle {{#if (lte this ../actor.system.combatAttributes.robustesse.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
+      {{/times}}
+    </div>
+    <div class="attribute-seuil">Seuil {{actor.system.combatAttributes.robustesse.seuil}}</div>
+  </div>
+</div>
