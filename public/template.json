@@ -1,6 +1,6 @@
 {
   "Actor": {
-    "types": ["playerCharacter", "scelerat", "secondCouteau", "lieutenant"],
+    "types": ["playerCharacter", "scelerat", "hommeDeMain", "brutes"],
     "playerCharacter": {
       "type": "playerCharacter",
       "sorcellerie": {
@@ -106,6 +106,10 @@
           "value": 0,
           "specialized": false
         },
+        "sangfroid": {
+          "value": 0,
+          "specialized": false
+        },
         "science": {
           "value": 0,
           "specialized": false
@@ -115,10 +119,6 @@
           "specialized": false
         },
         "strategie": {
-          "value": 0,
-          "specialized": false
-        },
-        "subornation": {
           "value": 0,
           "specialized": false
         },
@@ -240,6 +240,10 @@
           "value": 0,
           "specialized": false
         },
+        "sangfroid": {
+          "value": 0,
+          "specialized": false
+        },
         "science": {
           "value": 0,
           "specialized": false
@@ -249,10 +253,6 @@
           "specialized": false
         },
         "strategie": {
-          "value": 0,
-          "specialized": false
-        },
-        "subornation": {
           "value": 0,
           "specialized": false
         },
@@ -269,14 +269,15 @@
         "dramatiques": 0
       }
     },
-    "secondCouteau": {
-      "puissance": 1,
+    "brutes": {
+      "niveau": 1,
+      "nombre": 1,
       "blessures": {
         "value": 0
       }
     },
-    "lieutenant": {
-      "type": "lieutenant",
+    "hommeDeMain": {
+      "type": "hommeDeMain",
       "sorcellerie": {
         "type": "porte",
         "contrecoup": 0
@@ -380,6 +381,10 @@
           "value": 0,
           "specialized": false
         },
+        "sangfroid": {
+          "value": 0,
+          "specialized": false
+        },
         "science": {
           "value": 0,
           "specialized": false
@@ -389,10 +394,6 @@
           "specialized": false
         },
         "strategie": {
-          "value": 0,
-          "specialized": false
-        },
-        "subornation": {
           "value": 0,
           "specialized": false
         },
@@ -411,7 +412,7 @@
     }
   },
   "Item": {
-    "types": ["avantage", "equipements", "travers", "pouvoir"],
+    "types": ["avantage", "equipements", "pouvoir"],
     "avantage": {
       "name": "",
       "type": "passif",
@@ -423,10 +424,6 @@
     },
     "equipements": {
       "name": ""
-    },
-    "travers": {
-      "name": "",
-      "description": ""
     }
   }
 }

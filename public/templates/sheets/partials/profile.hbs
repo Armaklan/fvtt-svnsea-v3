@@ -94,22 +94,6 @@
       <div class="attribute-seuil">Seuil {{actor.system.combatAttributes.defense.seuil}}</div>
     {{/if}}
   </div>
-  <div class="profile-item combat" data-attribute="mouvement">
-    <label>Mouvement</label>
-    <div class="linked-attribute-select">
-      <select name="system.combatAttributes.mouvement.linkedAttribute">
-        {{selectOptions config.attributes selected=actor.system.combatAttributes.mouvement.linkedAttribute}}
-      </select>
-    </div>
-    <div class="attribute-circles">
-      {{#times 5}}
-        <i class="far fa-circle {{#if (lte this ../actor.system.combatAttributes.mouvement.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
-      {{/times}}
-    </div>
-    {{#if (eq variante "maison")}}
-      <div class="attribute-seuil">Seuil {{actor.system.combatAttributes.mouvement.seuil}}</div>
-    {{/if}}
-  </div>
   <div class="profile-item combat" data-attribute="degats">
     <label>Dégâts</label>
     <div class="linked-attribute-select">
@@ -124,6 +108,22 @@
     </div>
     {{#if (eq variante "maison")}}
       <div class="attribute-seuil">Seuil {{actor.system.combatAttributes.degats.seuil}}</div>
+    {{/if}}
+  </div>
+  <div class="profile-item combat" data-attribute="mouvement">
+    <label>Manoeuvre</label>
+    <div class="linked-attribute-select">
+      <select name="system.combatAttributes.mouvement.linkedAttribute">
+        {{selectOptions config.attributes selected=actor.system.combatAttributes.mouvement.linkedAttribute}}
+      </select>
+    </div>
+    <div class="attribute-circles">
+      {{#times 5}}
+        <i class="far fa-circle {{#if (lte this ../actor.system.combatAttributes.mouvement.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
+      {{/times}}
+    </div>
+    {{#if (eq variante "maison")}}
+      <div class="attribute-seuil">Seuil {{actor.system.combatAttributes.mouvement.seuil}}</div>
     {{/if}}
   </div>
   <div class="profile-item combat" data-attribute="robustesse">
