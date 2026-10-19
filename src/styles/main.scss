@@ -1,21 +1,31 @@
 /* 7Sea V3 CSS */
 /* Color Variables */
 :root {
-  --color-primary: #8b0000; /* Deep red for primary elements */
-  --color-secondary: #2c3e50; /* Dark blue-gray for secondary elements */
-  --color-accent: #d4af37; /* Gold for accents */
-  --color-text: #333333; /* Dark gray for text */
-  --color-text-light: #f5f5f5; /* Light gray for text on dark backgrounds */
-  --color-background: #f9f7f0; /* Off-white for backgrounds */
-  --color-border: #7a7971; /* Medium gray for borders */
-  --color-shadow: rgba(0, 0, 0, 0.2); /* Shadow color */
-  --color-hover: rgba(139, 0, 0, 0.1); /* Hover state color */
-  --color-active: rgba(139, 0, 0, 0.2); /* Active state color */
+  --color-primary: #8b0000;
+  /* Deep red for primary elements */
+  --color-secondary: #2c3e50;
+  /* Dark blue-gray for secondary elements */
+  --color-accent: #d4af37;
+  /* Gold for accents */
+  --color-text: #333333;
+  /* Dark gray for text */
+  --color-text-light: #f5f5f5;
+  /* Light gray for text on dark backgrounds */
+  --color-background: #f9f7f0;
+  /* Off-white for backgrounds */
+  --color-border: #7a7971;
+  /* Medium gray for borders */
+  --color-shadow: rgba(0, 0, 0, 0.2);
+  /* Shadow color */
+  --color-hover: rgba(139, 0, 0, 0.1);
+  /* Hover state color */
+  --color-active: rgba(139, 0, 0, 0.2);
+  /* Active state color */
 }
 
-  /* Main Form Styling */
+/* Main Form Styling */
 .fvtt-svnsea-v3.sheet.actor {
-  background-image: 
+  background-image:
     linear-gradient(rgba(249, 247, 240, 0.9), rgba(249, 247, 240, 0.9)),
     repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(139, 0, 0, 0.03) 10px, rgba(139, 0, 0, 0.03) 11px);
   border: 2px solid var(--color-accent);
@@ -35,8 +45,8 @@
     padding: 15px;
     background-color: rgba(255, 253, 240, 0.7);
     background-image:
-            linear-gradient(rgba(255, 255, 255, 0.5) 2px, transparent 2px),
-            linear-gradient(90deg, rgba(255, 255, 255, 0.5) 2px, transparent 2px);
+      linear-gradient(rgba(255, 255, 255, 0.5) 2px, transparent 2px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.5) 2px, transparent 2px);
     background-size: 20px 20px;
     border: 1px solid var(--color-border);
     border-radius: 8px;
@@ -143,8 +153,7 @@
 
   .skills-grid {
     display: grid;
-    grid-auto-flow: column;
-    grid-template-rows: repeat(7, auto);
+    grid-auto-flow: row;
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
   }
@@ -252,7 +261,7 @@
   .profile-item.combat {
     background: linear-gradient(to bottom, #f0f0f0, #dcdcdc);
     border-color: #555;
-    
+
     label {
       color: #8b0000;
       font-size: 1.1em;
@@ -343,6 +352,7 @@
     .charname {
       flex: 1;
       margin: 0;
+
       input {
         width: 100%;
         height: 45px;
@@ -391,7 +401,8 @@
         font-weight: bold;
         border: none;
         background: transparent;
-        pointer-events: none; /* Only allow changes via buttons */
+        pointer-events: none;
+        /* Only allow changes via buttons */
       }
 
       .heroisme-control {
@@ -475,7 +486,8 @@
         align-items: center;
         gap: 4px;
 
-        .blessure-normal, .blessure-dramatique {
+        .blessure-normal,
+        .blessure-dramatique {
           cursor: pointer;
           transition: all 0.2s ease;
           font-size: 1em;
@@ -690,8 +702,11 @@
     box-shadow: 0 5px 15px var(--color-shadow);
   }
 
-  /* Avantages, Travers, Equipements and Sorcellerie Sections */
-  .avantages-header, .equipements-header, .travers-header, .sorcellerie-header, .pouvoirs-header {
+  /* Avantages, Equipements and Sorcellerie Sections */
+  .avantages-header,
+  .equipements-header,
+  .sorcellerie-header,
+  .pouvoirs-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -702,7 +717,10 @@
     border-radius: 7px 7px 0 0;
   }
 
-  .avantages-title, .equipements-title, .travers-title, .sorcellerie-title, .pouvoirs-title {
+  .avantages-title,
+  .equipements-title,
+  .sorcellerie-title,
+  .pouvoirs-title {
     margin: 0;
     font-size: 1.4em;
     font-weight: bold;
@@ -769,12 +787,6 @@
     gap: 10px;
   }
 
-  .travers-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
   .pouvoirs-list {
     list-style: none;
     padding: 0;
@@ -784,7 +796,9 @@
     gap: 10px;
   }
 
-  .avantage-item, .equipement-item, .travers-item, .pouvoir-item {
+  .avantage-item,
+  .equipement-item,
+  .pouvoir-item {
     display: flex;
     flex-direction: column;
     padding: 8px 10px;
@@ -797,14 +811,18 @@
     height: 100%;
   }
 
-  .avantage-item:hover, .equipement-item:hover, .travers-item:hover, .pouvoir-item:hover {
+  .avantage-item:hover,
+  .equipement-item:hover,
+  .pouvoir-item:hover {
     background-color: rgba(212, 175, 55, 0.05);
     border-color: var(--color-accent);
     transform: translateX(3px);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
   }
 
-  .avantage-row, .travers-row, .equipement-row, .pouvoir-row {
+  .avantage-row,
+  .equipement-row,
+  .pouvoir-row {
     display: flex;
     align-items: center;
     width: 100%;
@@ -825,14 +843,17 @@
     }
   }
 
-  .avantage-name, .equipement-name, .travers-name, .pouvoir-name {
+  .avantage-name,
+  .equipement-name,
+  .pouvoir-name {
     flex: 1;
     margin-right: 5px;
     font-weight: bold;
     font-size: 1.1em;
   }
 
-  .avantage-description, .travers-description, .pouvoir-description {
+  .avantage-description,
+  .pouvoir-description {
     width: 100%;
     margin-top: 5px;
     font-style: italic;
@@ -858,8 +879,8 @@
     outline: none;
   }
 
-  /* Second Couteau Specific Styling */
-  &.second-couteau {
+  /* Brutes Specific Styling */
+  &.brutes {
     .puissance-section {
       display: flex;
       align-items: center;
@@ -905,7 +926,8 @@
   border-radius: 8px;
 }
 
-.fvtt-svnsea-v3.sheet.item.avantage, .fvtt-svnsea-v3.sheet.item.pouvoir {
+.fvtt-svnsea-v3.sheet.item.avantage,
+.fvtt-svnsea-v3.sheet.item.pouvoir {
   .sheet-header {
     display: flex;
     align-items: center;
@@ -922,6 +944,7 @@
     h1 {
       flex: 1;
       margin: 0;
+
       input {
         width: 100%;
         height: 100%;
@@ -935,61 +958,18 @@
 
   .form-group {
     margin-bottom: 15px;
+
     label {
       font-weight: bold;
       display: block;
       margin-bottom: 5px;
     }
+
     select {
       width: 100%;
       padding: 5px;
       border: 1px solid var(--color-border);
       border-radius: 4px;
-    }
-  }
-
-  .editor {
-    height: 300px;
-    border: 1px solid var(--color-border);
-    border-radius: 4px;
-    background: white;
-  }
-}
-
-.fvtt-svnsea-v3.sheet.item.travers {
-  .sheet-header {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 20px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid var(--color-accent);
-
-    img {
-      border: 2px solid var(--color-primary);
-      border-radius: 5px;
-    }
-
-    h1 {
-      flex: 1;
-      margin: 0;
-      input {
-        width: 100%;
-        height: 100%;
-        font-size: 1.5em;
-        font-weight: bold;
-        border: none;
-        background: transparent;
-      }
-    }
-  }
-
-  .form-group {
-    margin-bottom: 15px;
-    label {
-      font-weight: bold;
-      display: block;
-      margin-bottom: 5px;
     }
   }
 

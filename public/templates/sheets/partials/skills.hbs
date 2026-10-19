@@ -1,320 +1,367 @@
 <div class="skills-section">
   <h2>Compétences</h2>
   <div class="skills-grid">
-    <div class="skill-item" data-skill="armeDeTir">
-      <div class="skill-specialized">
-        <i class="skill-specialized-toggle {{#if actor.system.skills.armeDeTir.specialized}}fas fa-diamond{{else}}far fa-diamond{{/if}}"></i>
+    <div>
+      <h3>Erudition</h3>
+      <div class="skill-item" data-skill="ingenierie">
+        <div class="skill-specialized">
+          <i class="skill-specialized-toggle {{#if actor.system.skills.ingenierie.specialized}}fas fa-diamond{{else}}far fa-diamond{{/if}}"></i>
+        </div>
+        <div class="skill-roll">
+          <i class="fas fa-dice skill-roll-dice" title="Lancer un test"></i>
+        </div>
+        <label>Ingénierie {{#if (eq variante "standard")}}({{actor.system.skills.ingenierie.seuil}}){{/if}}</label>
+        <div class="skill-circles">
+          {{#times 5}}
+            <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.ingenierie.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
+          {{/times}}
+        </div>
+        <input type="hidden" name="system.skills.ingenierie.value" value="{{actor.system.skills.ingenierie.value}}" data-dtype="Number"/>
       </div>
-      <div class="skill-roll">
-        <i class="fas fa-dice skill-roll-dice" title="Lancer un test"></i>
+
+      <div class="skill-item" data-skill="lettre">
+        <div class="skill-specialized">
+          <i class="skill-specialized-toggle {{#if actor.system.skills.lettre.specialized}}fas fa-diamond{{else}}far fa-diamond{{/if}}"></i>
+        </div>
+        <div class="skill-roll">
+          <i class="fas fa-dice skill-roll-dice" title="Lancer un test"></i>
+        </div>
+        <label>Lettre {{#if (eq variante "standard")}}({{actor.system.skills.lettre.seuil}}){{/if}}</label>
+        <div class="skill-circles">
+          {{#times 5}}
+            <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.lettre.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
+          {{/times}}
+        </div>
+        <input type="hidden" name="system.skills.lettre.value" value="{{actor.system.skills.lettre.value}}" data-dtype="Number"/>
       </div>
-      <label>Arme de tir {{#if (eq variante "standard")}}({{actor.system.skills.armeDeTir.seuil}}){{/if}}</label>
-      <div class="skill-circles">
-        {{#times 5}}
-          <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.armeDeTir.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
-        {{/times}}
+
+      <div class="skill-item" data-skill="science">
+        <div class="skill-specialized">
+          <i class="skill-specialized-toggle {{#if actor.system.skills.science.specialized}}fas fa-diamond{{else}}far fa-diamond{{/if}}"></i>
+        </div>
+        <div class="skill-roll">
+          <i class="fas fa-dice skill-roll-dice" title="Lancer un test"></i>
+        </div>
+        <label>Science {{#if (eq variante "standard")}}({{actor.system.skills.science.seuil}}){{/if}}</label>
+        <div class="skill-circles">
+          {{#times 5}}
+            <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.science.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
+          {{/times}}
+        </div>
+        <input type="hidden" name="system.skills.science.value" value="{{actor.system.skills.science.value}}" data-dtype="Number"/>
       </div>
-      <input type="hidden" name="system.skills.armeDeTir.value" value="{{actor.system.skills.armeDeTir.value}}" data-dtype="Number"/>
     </div>
-    <div class="skill-item" data-skill="armesBlanches">
-      <div class="skill-specialized">
-        <i class="skill-specialized-toggle {{#if actor.system.skills.armesBlanches.specialized}}fas fa-diamond{{else}}far fa-diamond{{/if}}"></i>
+
+    <div>
+      <h3>Malice</h3>
+
+      <div class="skill-item" data-skill="furtivite">
+        <div class="skill-specialized">
+          <i class="skill-specialized-toggle {{#if actor.system.skills.furtivite.specialized}}fas fa-diamond{{else}}far fa-diamond{{/if}}"></i>
+        </div>
+        <div class="skill-roll">
+          <i class="fas fa-dice skill-roll-dice" title="Lancer un test"></i>
+        </div>
+        <label>Furtivité {{#if (eq variante "standard")}}({{actor.system.skills.furtivite.seuil}}){{/if}}</label>
+        <div class="skill-circles">
+          {{#times 5}}
+            <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.furtivite.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
+          {{/times}}
+        </div>
+        <input type="hidden" name="system.skills.furtivite.value" value="{{actor.system.skills.furtivite.value}}" data-dtype="Number"/>
       </div>
-      <div class="skill-roll">
-        <i class="fas fa-dice skill-roll-dice" title="Lancer un test"></i>
+
+      <div class="skill-item" data-skill="larcin">
+        <div class="skill-specialized">
+          <i class="skill-specialized-toggle {{#if actor.system.skills.larcin.specialized}}fas fa-diamond{{else}}far fa-diamond{{/if}}"></i>
+        </div>
+        <div class="skill-roll">
+          <i class="fas fa-dice skill-roll-dice" title="Lancer un test"></i>
+        </div>
+        <label>Larcin {{#if (eq variante "standard")}}({{actor.system.skills.larcin.seuil}}){{/if}}</label>
+        <div class="skill-circles">
+          {{#times 5}}
+            <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.larcin.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
+          {{/times}}
+        </div>
+        <input type="hidden" name="system.skills.larcin.value" value="{{actor.system.skills.larcin.value}}" data-dtype="Number"/>
       </div>
-      <label>Armes blanches {{#if (eq variante "standard")}}({{actor.system.skills.armesBlanches.seuil}}){{/if}}</label>
-      <div class="skill-circles">
-        {{#times 5}}
-          <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.armesBlanches.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
-        {{/times}}
+
+      <div class="skill-item" data-skill="recherche">
+        <div class="skill-specialized">
+          <i class="skill-specialized-toggle {{#if actor.system.skills.recherche.specialized}}fas fa-diamond{{else}}far fa-diamond{{/if}}"></i>
+        </div>
+        <div class="skill-roll">
+          <i class="fas fa-dice skill-roll-dice" title="Lancer un test"></i>
+        </div>
+        <label>Recherche {{#if (eq variante "standard")}}({{actor.system.skills.recherche.seuil}}){{/if}}</label>
+        <div class="skill-circles">
+          {{#times 5}}
+            <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.recherche.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
+          {{/times}}
+        </div>
+        <input type="hidden" name="system.skills.recherche.value" value="{{actor.system.skills.recherche.value}}" data-dtype="Number"/>
       </div>
-      <input type="hidden" name="system.skills.armesBlanches.value" value="{{actor.system.skills.armesBlanches.value}}" data-dtype="Number"/>
     </div>
-    <div class="skill-item" data-skill="athletisme">
-      <div class="skill-specialized">
-        <i class="skill-specialized-toggle {{#if actor.system.skills.athletisme.specialized}}fas fa-diamond{{else}}far fa-diamond{{/if}}"></i>
+
+    <div>
+      <h3>Martial</h3>
+
+      <div class="skill-item" data-skill="armesBlanches">
+        <div class="skill-specialized">
+          <i class="skill-specialized-toggle {{#if actor.system.skills.armesBlanches.specialized}}fas fa-diamond{{else}}far fa-diamond{{/if}}"></i>
+        </div>
+        <div class="skill-roll">
+          <i class="fas fa-dice skill-roll-dice" title="Lancer un test"></i>
+        </div>
+        <label>Armes blanches {{#if (eq variante "standard")}}({{actor.system.skills.armesBlanches.seuil}}){{/if}}</label>
+        <div class="skill-circles">
+          {{#times 5}}
+            <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.armesBlanches.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
+          {{/times}}
+        </div>
+        <input type="hidden" name="system.skills.armesBlanches.value" value="{{actor.system.skills.armesBlanches.value}}" data-dtype="Number"/>
       </div>
-      <div class="skill-roll">
-        <i class="fas fa-dice skill-roll-dice" title="Lancer un test"></i>
+      
+      <div class="skill-item" data-skill="armeDeTir">
+        <div class="skill-specialized">
+          <i class="skill-specialized-toggle {{#if actor.system.skills.armeDeTir.specialized}}fas fa-diamond{{else}}far fa-diamond{{/if}}"></i>
+        </div>
+        <div class="skill-roll">
+          <i class="fas fa-dice skill-roll-dice" title="Lancer un test"></i>
+        </div>
+        <label>Arme de tir {{#if (eq variante "standard")}}({{actor.system.skills.armeDeTir.seuil}}){{/if}}</label>
+        <div class="skill-circles">
+          {{#times 5}}
+            <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.armeDeTir.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
+          {{/times}}
+        </div>
+        <input type="hidden" name="system.skills.armeDeTir.value" value="{{actor.system.skills.armeDeTir.value}}" data-dtype="Number"/>
       </div>
-      <label>Athlétisme {{#if (eq variante "standard")}}({{actor.system.skills.athletisme.seuil}}){{/if}}</label>
-      <div class="skill-circles">
-        {{#times 5}}
-          <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.athletisme.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
-        {{/times}}
+
+      <div class="skill-item" data-skill="athletisme">
+        <div class="skill-specialized">
+          <i class="skill-specialized-toggle {{#if actor.system.skills.athletisme.specialized}}fas fa-diamond{{else}}far fa-diamond{{/if}}"></i>
+        </div>
+        <div class="skill-roll">
+          <i class="fas fa-dice skill-roll-dice" title="Lancer un test"></i>
+        </div>
+        <label>Athlétisme {{#if (eq variante "standard")}}({{actor.system.skills.athletisme.seuil}}){{/if}}</label>
+        <div class="skill-circles">
+          {{#times 5}}
+            <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.athletisme.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
+          {{/times}}
+        </div>
+        <input type="hidden" name="system.skills.athletisme.value" value="{{actor.system.skills.athletisme.value}}" data-dtype="Number"/>
       </div>
-      <input type="hidden" name="system.skills.athletisme.value" value="{{actor.system.skills.athletisme.value}}" data-dtype="Number"/>
     </div>
-    <div class="skill-item" data-skill="empathie">
-      <div class="skill-specialized">
-        <i class="skill-specialized-toggle {{#if actor.system.skills.empathie.specialized}}fas fa-diamond{{else}}far fa-diamond{{/if}}"></i>
+
+    <div>
+      <h3>Merveilleux</h3>
+
+      <div class="skill-item" data-skill="legendes">
+        <div class="skill-specialized">
+          <i class="skill-specialized-toggle {{#if actor.system.skills.legendes.specialized}}fas fa-diamond{{else}}far fa-diamond{{/if}}"></i>
+        </div>
+        <div class="skill-roll">
+          <i class="fas fa-dice skill-roll-dice" title="Lancer un test"></i>
+        </div>
+        <label>Légendes {{#if (eq variante "standard")}}({{actor.system.skills.legendes.seuil}}){{/if}}</label>
+        <div class="skill-circles">
+          {{#times 5}}
+            <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.legendes.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
+          {{/times}}
+        </div>
+        <input type="hidden" name="system.skills.legendes.value" value="{{actor.system.skills.legendes.value}}" data-dtype="Number"/>
       </div>
-      <div class="skill-roll">
-        <i class="fas fa-dice skill-roll-dice" title="Lancer un test"></i>
+
+      <div class="skill-item" data-skill="religion">
+        <div class="skill-specialized">
+          <i class="skill-specialized-toggle {{#if actor.system.skills.religion.specialized}}fas fa-diamond{{else}}far fa-diamond{{/if}}"></i>
+        </div>
+        <div class="skill-roll">
+          <i class="fas fa-dice skill-roll-dice" title="Lancer un test"></i>
+        </div>
+        <label>Religion {{#if (eq variante "standard")}}({{actor.system.skills.religion.seuil}}){{/if}}</label>
+        <div class="skill-circles">
+          {{#times 5}}
+            <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.religion.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
+          {{/times}}
+        </div>
+        <input type="hidden" name="system.skills.religion.value" value="{{actor.system.skills.religion.value}}" data-dtype="Number"/>
       </div>
-      <label>Empathie {{#if (eq variante "standard")}}({{actor.system.skills.empathie.seuil}}){{/if}}</label>
-      <div class="skill-circles">
-        {{#times 5}}
-          <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.empathie.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
-        {{/times}}
+
+      <div class="skill-item" data-skill="sorcellerie">
+        <div class="skill-specialized">
+          <i class="skill-specialized-toggle {{#if actor.system.skills.sorcellerie.specialized}}fas fa-diamond{{else}}far fa-diamond{{/if}}"></i>
+        </div>
+        <div class="skill-roll">
+          <i class="fas fa-dice skill-roll-dice" title="Lancer un test"></i>
+        </div>
+        <label>Sorcellerie {{#if (eq variante "standard")}}({{actor.system.skills.sorcellerie.seuil}}){{/if}}</label>
+        <div class="skill-circles">
+          {{#times 5}}
+            <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.sorcellerie.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
+          {{/times}}
+        </div>
+        <input type="hidden" name="system.skills.sorcellerie.value" value="{{actor.system.skills.sorcellerie.value}}" data-dtype="Number"/>
       </div>
-      <input type="hidden" name="system.skills.empathie.value" value="{{actor.system.skills.empathie.value}}" data-dtype="Number"/>
     </div>
-    <div class="skill-item" data-skill="furtivite">
-      <div class="skill-specialized">
-        <i class="skill-specialized-toggle {{#if actor.system.skills.furtivite.specialized}}fas fa-diamond{{else}}far fa-diamond{{/if}}"></i>
+
+    <div>
+      <h3>Militaire</h3>
+
+      <div class="skill-item" data-skill="navigation">
+        <div class="skill-specialized">
+          <i class="skill-specialized-toggle {{#if actor.system.skills.navigation.specialized}}fas fa-diamond{{else}}far fa-diamond{{/if}}"></i>
+        </div>
+        <div class="skill-roll">
+          <i class="fas fa-dice skill-roll-dice" title="Lancer un test"></i>
+        </div>
+        <label>Navigation {{#if (eq variante "standard")}}({{actor.system.skills.navigation.seuil}}){{/if}}</label>
+        <div class="skill-circles">
+          {{#times 5}}
+            <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.navigation.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
+          {{/times}}
+        </div>
+        <input type="hidden" name="system.skills.navigation.value" value="{{actor.system.skills.navigation.value}}" data-dtype="Number"/>
       </div>
-      <div class="skill-roll">
-        <i class="fas fa-dice skill-roll-dice" title="Lancer un test"></i>
+
+      <div class="skill-item" data-skill="strategie">
+        <div class="skill-specialized">
+          <i class="skill-specialized-toggle {{#if actor.system.skills.strategie.specialized}}fas fa-diamond{{else}}far fa-diamond{{/if}}"></i>
+        </div>
+        <div class="skill-roll">
+          <i class="fas fa-dice skill-roll-dice" title="Lancer un test"></i>
+        </div>
+        <label>Stratégie {{#if (eq variante "standard")}}({{actor.system.skills.strategie.seuil}}){{/if}}</label>
+        <div class="skill-circles">
+          {{#times 5}}
+            <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.strategie.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
+          {{/times}}
+        </div>
+        <input type="hidden" name="system.skills.strategie.value" value="{{actor.system.skills.strategie.value}}" data-dtype="Number"/>
       </div>
-      <label>Furtivité {{#if (eq variante "standard")}}({{actor.system.skills.furtivite.seuil}}){{/if}}</label>
-      <div class="skill-circles">
-        {{#times 5}}
-          <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.furtivite.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
-        {{/times}}
+
+      <div class="skill-item" data-skill="survie">
+        <div class="skill-specialized">
+          <i class="skill-specialized-toggle {{#if actor.system.skills.survie.specialized}}fas fa-diamond{{else}}far fa-diamond{{/if}}"></i>
+        </div>
+        <div class="skill-roll">
+          <i class="fas fa-dice skill-roll-dice" title="Lancer un test"></i>
+        </div>
+        <label>Survie {{#if (eq variante "standard")}}({{actor.system.skills.survie.seuil}}){{/if}}</label>
+        <div class="skill-circles">
+          {{#times 5}}
+            <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.survie.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
+          {{/times}}
+        </div>
+        <input type="hidden" name="system.skills.survie.value" value="{{actor.system.skills.survie.value}}" data-dtype="Number"/>
       </div>
-      <input type="hidden" name="system.skills.furtivite.value" value="{{actor.system.skills.furtivite.value}}" data-dtype="Number"/>
     </div>
-    <div class="skill-item" data-skill="ingenierie">
-      <div class="skill-specialized">
-        <i class="skill-specialized-toggle {{#if actor.system.skills.ingenierie.specialized}}fas fa-diamond{{else}}far fa-diamond{{/if}}"></i>
+
+    <div>
+      <h3>Politique</h3>
+
+      <div class="skill-item" data-skill="intrigue">
+        <div class="skill-specialized">
+          <i class="skill-specialized-toggle {{#if actor.system.skills.intrigue.specialized}}fas fa-diamond{{else}}far fa-diamond{{/if}}"></i>
+        </div>
+        <div class="skill-roll">
+          <i class="fas fa-dice skill-roll-dice" title="Lancer un test"></i>
+        </div>
+        <label>Intrigue {{#if (eq variante "standard")}}({{actor.system.skills.intrigue.seuil}}){{/if}}</label>
+        <div class="skill-circles">
+          {{#times 5}}
+            <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.intrigue.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
+          {{/times}}
+        </div>
+        <input type="hidden" name="system.skills.intrigue.value" value="{{actor.system.skills.intrigue.value}}" data-dtype="Number"/>
       </div>
-      <div class="skill-roll">
-        <i class="fas fa-dice skill-roll-dice" title="Lancer un test"></i>
+
+      <div class="skill-item" data-skill="protocole">
+        <div class="skill-specialized">
+          <i class="skill-specialized-toggle {{#if actor.system.skills.protocole.specialized}}fas fa-diamond{{else}}far fa-diamond{{/if}}"></i>
+        </div>
+        <div class="skill-roll">
+          <i class="fas fa-dice skill-roll-dice" title="Lancer un test"></i>
+        </div>
+        <label>Protocole {{#if (eq variante "standard")}}({{actor.system.skills.protocole.seuil}}){{/if}}</label>
+        <div class="skill-circles">
+          {{#times 5}}
+            <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.protocole.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
+          {{/times}}
+        </div>
+        <input type="hidden" name="system.skills.protocole.value" value="{{actor.system.skills.protocole.value}}" data-dtype="Number"/>
       </div>
-      <label>Ingénierie {{#if (eq variante "standard")}}({{actor.system.skills.ingenierie.seuil}}){{/if}}</label>
-      <div class="skill-circles">
-        {{#times 5}}
-          <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.ingenierie.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
-        {{/times}}
+      
+      <div class="skill-item" data-skill="sangfroid">
+        <div class="skill-specialized">
+          <i class="skill-specialized-toggle {{#if actor.system.skills.sangfroid.specialized}}fas fa-diamond{{else}}far fa-diamond{{/if}}"></i>
+        </div>
+        <div class="skill-roll">
+          <i class="fas fa-dice skill-roll-dice" title="Lancer un test"></i>
+        </div>
+        <label>Sang-Froid {{#if (eq variante "standard")}}({{actor.system.skills.sangfroid.seuil}}){{/if}}</label>
+        <div class="skill-circles">
+          {{#times 5}}
+            <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.sangfroid.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
+          {{/times}}
+        </div>
+        <input type="hidden" name="system.skills.sangfroid.value" value="{{actor.system.skills.sangfroid.value}}" data-dtype="Number"/>
       </div>
-      <input type="hidden" name="system.skills.ingenierie.value" value="{{actor.system.skills.ingenierie.value}}" data-dtype="Number"/>
     </div>
-    <div class="skill-item" data-skill="intrigue">
-      <div class="skill-specialized">
-        <i class="skill-specialized-toggle {{#if actor.system.skills.intrigue.specialized}}fas fa-diamond{{else}}far fa-diamond{{/if}}"></i>
+
+    <div>
+      <h3>Social</h3>
+
+      <div class="skill-item" data-skill="empathie">
+        <div class="skill-specialized">
+          <i class="skill-specialized-toggle {{#if actor.system.skills.empathie.specialized}}fas fa-diamond{{else}}far fa-diamond{{/if}}"></i>
+        </div>
+        <div class="skill-roll">
+          <i class="fas fa-dice skill-roll-dice" title="Lancer un test"></i>
+        </div>
+        <label>Empathie {{#if (eq variante "standard")}}({{actor.system.skills.empathie.seuil}}){{/if}}</label>
+        <div class="skill-circles">
+          {{#times 5}}
+            <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.empathie.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
+          {{/times}}
+        </div>
+        <input type="hidden" name="system.skills.empathie.value" value="{{actor.system.skills.empathie.value}}" data-dtype="Number"/>
       </div>
-      <div class="skill-roll">
-        <i class="fas fa-dice skill-roll-dice" title="Lancer un test"></i>
+
+      <div class="skill-item" data-skill="persuasion">
+        <div class="skill-specialized">
+          <i class="skill-specialized-toggle {{#if actor.system.skills.persuasion.specialized}}fas fa-diamond{{else}}far fa-diamond{{/if}}"></i>
+        </div>
+        <div class="skill-roll">
+          <i class="fas fa-dice skill-roll-dice" title="Lancer un test"></i>
+        </div>
+        <label>Persuasion {{#if (eq variante "standard")}}({{actor.system.skills.persuasion.seuil}}){{/if}}</label>
+        <div class="skill-circles">
+          {{#times 5}}
+            <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.persuasion.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
+          {{/times}}
+        </div>
+        <input type="hidden" name="system.skills.persuasion.value" value="{{actor.system.skills.persuasion.value}}" data-dtype="Number"/>
       </div>
-      <label>Intrigue {{#if (eq variante "standard")}}({{actor.system.skills.intrigue.seuil}}){{/if}}</label>
-      <div class="skill-circles">
-        {{#times 5}}
-          <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.intrigue.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
-        {{/times}}
+      
+      <div class="skill-item" data-skill="representation">
+        <div class="skill-specialized">
+          <i class="skill-specialized-toggle {{#if actor.system.skills.representation.specialized}}fas fa-diamond{{else}}far fa-diamond{{/if}}"></i>
+        </div>
+        <div class="skill-roll">
+          <i class="fas fa-dice skill-roll-dice" title="Lancer un test"></i>
+        </div>
+        <label>Représentation {{#if (eq variante "standard")}}({{actor.system.skills.representation.seuil}}){{/if}}</label>
+        <div class="skill-circles">
+          {{#times 5}}
+            <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.representation.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
+          {{/times}}
+        </div>
+        <input type="hidden" name="system.skills.representation.value" value="{{actor.system.skills.representation.value}}" data-dtype="Number"/>
       </div>
-      <input type="hidden" name="system.skills.intrigue.value" value="{{actor.system.skills.intrigue.value}}" data-dtype="Number"/>
-    </div>
-    <div class="skill-item" data-skill="larcin">
-      <div class="skill-specialized">
-        <i class="skill-specialized-toggle {{#if actor.system.skills.larcin.specialized}}fas fa-diamond{{else}}far fa-diamond{{/if}}"></i>
-      </div>
-      <div class="skill-roll">
-        <i class="fas fa-dice skill-roll-dice" title="Lancer un test"></i>
-      </div>
-      <label>Larcin {{#if (eq variante "standard")}}({{actor.system.skills.larcin.seuil}}){{/if}}</label>
-      <div class="skill-circles">
-        {{#times 5}}
-          <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.larcin.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
-        {{/times}}
-      </div>
-      <input type="hidden" name="system.skills.larcin.value" value="{{actor.system.skills.larcin.value}}" data-dtype="Number"/>
-    </div>
-    <div class="skill-item" data-skill="legendes">
-      <div class="skill-specialized">
-        <i class="skill-specialized-toggle {{#if actor.system.skills.legendes.specialized}}fas fa-diamond{{else}}far fa-diamond{{/if}}"></i>
-      </div>
-      <div class="skill-roll">
-        <i class="fas fa-dice skill-roll-dice" title="Lancer un test"></i>
-      </div>
-      <label>Légendes {{#if (eq variante "standard")}}({{actor.system.skills.legendes.seuil}}){{/if}}</label>
-      <div class="skill-circles">
-        {{#times 5}}
-          <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.legendes.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
-        {{/times}}
-      </div>
-      <input type="hidden" name="system.skills.legendes.value" value="{{actor.system.skills.legendes.value}}" data-dtype="Number"/>
-    </div>
-    <div class="skill-item" data-skill="lettre">
-      <div class="skill-specialized">
-        <i class="skill-specialized-toggle {{#if actor.system.skills.lettre.specialized}}fas fa-diamond{{else}}far fa-diamond{{/if}}"></i>
-      </div>
-      <div class="skill-roll">
-        <i class="fas fa-dice skill-roll-dice" title="Lancer un test"></i>
-      </div>
-      <label>Lettre {{#if (eq variante "standard")}}({{actor.system.skills.lettre.seuil}}){{/if}}</label>
-      <div class="skill-circles">
-        {{#times 5}}
-          <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.lettre.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
-        {{/times}}
-      </div>
-      <input type="hidden" name="system.skills.lettre.value" value="{{actor.system.skills.lettre.value}}" data-dtype="Number"/>
-    </div>
-    <div class="skill-item" data-skill="navigation">
-      <div class="skill-specialized">
-        <i class="skill-specialized-toggle {{#if actor.system.skills.navigation.specialized}}fas fa-diamond{{else}}far fa-diamond{{/if}}"></i>
-      </div>
-      <div class="skill-roll">
-        <i class="fas fa-dice skill-roll-dice" title="Lancer un test"></i>
-      </div>
-      <label>Navigation {{#if (eq variante "standard")}}({{actor.system.skills.navigation.seuil}}){{/if}}</label>
-      <div class="skill-circles">
-        {{#times 5}}
-          <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.navigation.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
-        {{/times}}
-      </div>
-      <input type="hidden" name="system.skills.navigation.value" value="{{actor.system.skills.navigation.value}}" data-dtype="Number"/>
-    </div>
-    <div class="skill-item" data-skill="persuasion">
-      <div class="skill-specialized">
-        <i class="skill-specialized-toggle {{#if actor.system.skills.persuasion.specialized}}fas fa-diamond{{else}}far fa-diamond{{/if}}"></i>
-      </div>
-      <div class="skill-roll">
-        <i class="fas fa-dice skill-roll-dice" title="Lancer un test"></i>
-      </div>
-      <label>Persuasion {{#if (eq variante "standard")}}({{actor.system.skills.persuasion.seuil}}){{/if}}</label>
-      <div class="skill-circles">
-        {{#times 5}}
-          <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.persuasion.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
-        {{/times}}
-      </div>
-      <input type="hidden" name="system.skills.persuasion.value" value="{{actor.system.skills.persuasion.value}}" data-dtype="Number"/>
-    </div>
-    <div class="skill-item" data-skill="protocole">
-      <div class="skill-specialized">
-        <i class="skill-specialized-toggle {{#if actor.system.skills.protocole.specialized}}fas fa-diamond{{else}}far fa-diamond{{/if}}"></i>
-      </div>
-      <div class="skill-roll">
-        <i class="fas fa-dice skill-roll-dice" title="Lancer un test"></i>
-      </div>
-      <label>Protocole {{#if (eq variante "standard")}}({{actor.system.skills.protocole.seuil}}){{/if}}</label>
-      <div class="skill-circles">
-        {{#times 5}}
-          <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.protocole.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
-        {{/times}}
-      </div>
-      <input type="hidden" name="system.skills.protocole.value" value="{{actor.system.skills.protocole.value}}" data-dtype="Number"/>
-    </div>
-    <div class="skill-item" data-skill="recherche">
-      <div class="skill-specialized">
-        <i class="skill-specialized-toggle {{#if actor.system.skills.recherche.specialized}}fas fa-diamond{{else}}far fa-diamond{{/if}}"></i>
-      </div>
-      <div class="skill-roll">
-        <i class="fas fa-dice skill-roll-dice" title="Lancer un test"></i>
-      </div>
-      <label>Recherche {{#if (eq variante "standard")}}({{actor.system.skills.recherche.seuil}}){{/if}}</label>
-      <div class="skill-circles">
-        {{#times 5}}
-          <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.recherche.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
-        {{/times}}
-      </div>
-      <input type="hidden" name="system.skills.recherche.value" value="{{actor.system.skills.recherche.value}}" data-dtype="Number"/>
-    </div>
-    <div class="skill-item" data-skill="religion">
-      <div class="skill-specialized">
-        <i class="skill-specialized-toggle {{#if actor.system.skills.religion.specialized}}fas fa-diamond{{else}}far fa-diamond{{/if}}"></i>
-      </div>
-      <div class="skill-roll">
-        <i class="fas fa-dice skill-roll-dice" title="Lancer un test"></i>
-      </div>
-      <label>Religion {{#if (eq variante "standard")}}({{actor.system.skills.religion.seuil}}){{/if}}</label>
-      <div class="skill-circles">
-        {{#times 5}}
-          <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.religion.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
-        {{/times}}
-      </div>
-      <input type="hidden" name="system.skills.religion.value" value="{{actor.system.skills.religion.value}}" data-dtype="Number"/>
-    </div>
-    <div class="skill-item" data-skill="representation">
-      <div class="skill-specialized">
-        <i class="skill-specialized-toggle {{#if actor.system.skills.representation.specialized}}fas fa-diamond{{else}}far fa-diamond{{/if}}"></i>
-      </div>
-      <div class="skill-roll">
-        <i class="fas fa-dice skill-roll-dice" title="Lancer un test"></i>
-      </div>
-      <label>Représentation {{#if (eq variante "standard")}}({{actor.system.skills.representation.seuil}}){{/if}}</label>
-      <div class="skill-circles">
-        {{#times 5}}
-          <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.representation.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
-        {{/times}}
-      </div>
-      <input type="hidden" name="system.skills.representation.value" value="{{actor.system.skills.representation.value}}" data-dtype="Number"/>
-    </div>
-    <div class="skill-item" data-skill="science">
-      <div class="skill-specialized">
-        <i class="skill-specialized-toggle {{#if actor.system.skills.science.specialized}}fas fa-diamond{{else}}far fa-diamond{{/if}}"></i>
-      </div>
-      <div class="skill-roll">
-        <i class="fas fa-dice skill-roll-dice" title="Lancer un test"></i>
-      </div>
-      <label>Science {{#if (eq variante "standard")}}({{actor.system.skills.science.seuil}}){{/if}}</label>
-      <div class="skill-circles">
-        {{#times 5}}
-          <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.science.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
-        {{/times}}
-      </div>
-      <input type="hidden" name="system.skills.science.value" value="{{actor.system.skills.science.value}}" data-dtype="Number"/>
-    </div>
-    <div class="skill-item" data-skill="sorcellerie">
-      <div class="skill-specialized">
-        <i class="skill-specialized-toggle {{#if actor.system.skills.sorcellerie.specialized}}fas fa-diamond{{else}}far fa-diamond{{/if}}"></i>
-      </div>
-      <div class="skill-roll">
-        <i class="fas fa-dice skill-roll-dice" title="Lancer un test"></i>
-      </div>
-      <label>Sorcellerie {{#if (eq variante "standard")}}({{actor.system.skills.sorcellerie.seuil}}){{/if}}</label>
-      <div class="skill-circles">
-        {{#times 5}}
-          <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.sorcellerie.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
-        {{/times}}
-      </div>
-      <input type="hidden" name="system.skills.sorcellerie.value" value="{{actor.system.skills.sorcellerie.value}}" data-dtype="Number"/>
-    </div>
-    <div class="skill-item" data-skill="strategie">
-      <div class="skill-specialized">
-        <i class="skill-specialized-toggle {{#if actor.system.skills.strategie.specialized}}fas fa-diamond{{else}}far fa-diamond{{/if}}"></i>
-      </div>
-      <div class="skill-roll">
-        <i class="fas fa-dice skill-roll-dice" title="Lancer un test"></i>
-      </div>
-      <label>Stratégie {{#if (eq variante "standard")}}({{actor.system.skills.strategie.seuil}}){{/if}}</label>
-      <div class="skill-circles">
-        {{#times 5}}
-          <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.strategie.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
-        {{/times}}
-      </div>
-      <input type="hidden" name="system.skills.strategie.value" value="{{actor.system.skills.strategie.value}}" data-dtype="Number"/>
-    </div>
-    <div class="skill-item" data-skill="subornation">
-      <div class="skill-specialized">
-        <i class="skill-specialized-toggle {{#if actor.system.skills.subornation.specialized}}fas fa-diamond{{else}}far fa-diamond{{/if}}"></i>
-      </div>
-      <div class="skill-roll">
-        <i class="fas fa-dice skill-roll-dice" title="Lancer un test"></i>
-      </div>
-      <label>Subornation {{#if (eq variante "standard")}}({{actor.system.skills.subornation.seuil}}){{/if}}</label>
-      <div class="skill-circles">
-        {{#times 5}}
-          <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.subornation.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
-        {{/times}}
-      </div>
-      <input type="hidden" name="system.skills.subornation.value" value="{{actor.system.skills.subornation.value}}" data-dtype="Number"/>
-    </div>
-    <div class="skill-item" data-skill="survie">
-      <div class="skill-specialized">
-        <i class="skill-specialized-toggle {{#if actor.system.skills.survie.specialized}}fas fa-diamond{{else}}far fa-diamond{{/if}}"></i>
-      </div>
-      <div class="skill-roll">
-        <i class="fas fa-dice skill-roll-dice" title="Lancer un test"></i>
-      </div>
-      <label>Survie {{#if (eq variante "standard")}}({{actor.system.skills.survie.seuil}}){{/if}}</label>
-      <div class="skill-circles">
-        {{#times 5}}
-          <i class="far fa-circle skill-circle {{#if (lte this ../actor.system.skills.survie.value)}}fas{{else}}far{{/if}}" data-index="{{this}}"></i>
-        {{/times}}
-      </div>
-      <input type="hidden" name="system.skills.survie.value" value="{{actor.system.skills.survie.value}}" data-dtype="Number"/>
     </div>
   </div>
 </div>

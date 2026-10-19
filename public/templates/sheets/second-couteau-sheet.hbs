@@ -1,12 +1,17 @@
-<form class="{{cssClass}} second-couteau-sheet" autocomplete="off">
+<form class="{{cssClass}} brutes-sheet" autocomplete="off">
   <header class="sheet-header">
     <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100"/>
     <div class="header-fields">
       <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="Nom"/></h1>
       
       <div class="puissance-section">
-        <label>Puissance (1-10)</label>
-        <input name="system.puissance" type="number" value="{{actor.system.puissance}}" min="1" max="10" />
+        <label>Niveau (1-5)</label>
+        <input name="system.niveau" type="number" value="{{actor.system.niveau}}" min="1" max="5" />
+      </div>
+      
+      <div class="nombre-section">
+        <label>Nombre de brutes</label>
+        <input name="system.nombre" type="number" value="{{actor.system.nombre}}" min="1" />
       </div>
 
       <div class="blessures-section">

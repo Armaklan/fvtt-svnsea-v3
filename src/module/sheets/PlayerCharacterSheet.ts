@@ -5,11 +5,17 @@ export class PlayerCharacterSheet extends ActorSheet {
   /** @override */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ["fvtt-svnsea-v3", "sheet", "actor"],
-      template: "systems/fvtt-svnsea-v3/templates/sheets/actor-sheet.hbs",
+      classes: ['fvtt-svnsea-v3', 'sheet', 'actor'],
+      template: 'systems/fvtt-svnsea-v3/templates/sheets/actor-sheet.hbs',
       width: 1000,
       height: 800,
-      tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "attributes" }]
+      tabs: [
+        {
+          navSelector: '.sheet-tabs',
+          contentSelector: '.sheet-body',
+          initial: 'attributes',
+        },
+      ],
     });
   }
 
@@ -19,15 +25,16 @@ export class PlayerCharacterSheet extends ActorSheet {
 
     // Calculer les seuils de garde pour chaque attribut
     const attributes = data.actor.system.attributes;
-    const thresholdModifier = (game.settings.get("fvtt-svnsea-v3", "modificateurSeuil") as number) || 0;
-    const variante = game.settings.get("fvtt-svnsea-v3", "variante") as string;
+    const thresholdModifier =
+      (game.settings.get('fvtt-svnsea-v3', 'modificateurSeuil') as number) || 0;
+    const variante = game.settings.get('fvtt-svnsea-v3', 'variante') as string;
     data.variante = variante;
 
     if (attributes) {
       for (let attr in attributes) {
         const value = attributes[attr].value;
-        // Formule : Seuil = (10 - valeur) - modificateur
-        attributes[attr].seuil = (10 - value) - thresholdModifier;
+        // Formule : Seuil = (8 - arrondi(valeur / 2)) - modificateur
+        attributes[attr].seuil = 8 - Math.round(value / 2) - thresholdModifier;
       }
     }
 
@@ -36,7 +43,7 @@ export class PlayerCharacterSheet extends ActorSheet {
     if (variante === 'standard' && skills) {
       for (let sKey in skills) {
         const sValue = skills[sKey].value || 0;
-        skills[sKey].seuil = (10 - sValue) - thresholdModifier;
+        skills[sKey].seuil = 8 - Math.round(sValue / 2) - thresholdModifier;
       }
     }
 
@@ -53,12 +60,13 @@ export class PlayerCharacterSheet extends ActorSheet {
     }
 
     // Calcul des blessures
-    const robustesse = combatAttributes?.robustesse?.value || attributes?.resolution?.value || 1;
+    const robustesse =
+      combatAttributes?.robustesse?.value || attributes?.resolution?.value || 1;
     const baseBlessure = robustesse;
     const blessuresValue = data.actor.system.blessures?.value || 0;
     const dramatiquesValue = data.actor.system.blessures?.dramatiques || 0;
 
-    const maxDramatiques = data.actor.type === 'lieutenant' ? 2 : 4;
+    const maxDramatiques = data.actor.type === 'hommeDeMain' ? 2 : 4;
 
     const blessures = [];
     for (let i = 1; i <= maxDramatiques; i++) {
@@ -66,55 +74,60 @@ export class PlayerCharacterSheet extends ActorSheet {
         index: i,
         normals: [] as any[],
         dramatique: {
-          filled: dramatiquesValue >= i
-        }
+          filled: dramatiquesValue >= i,
+        },
       };
       for (let j = 1; j <= baseBlessure; j++) {
         const woundIndex = (i - 1) * baseBlessure + j;
         group.normals.push({
           index: woundIndex,
-          filled: blessuresValue >= woundIndex
+          filled: blessuresValue >= woundIndex,
         });
       }
       blessures.push(group);
     }
     data.blessures = blessures;
-    
+
     // Vérifier si l'onglet Sorcellerie doit être affiché
-    // Uniquement pour personnages, scélérats ou lieutenants ayant un cercle en Sorcellerie
+    // Uniquement pour personnages, scélérats ou hommes de main ayant un cercle en Sorcellerie
     const actorType = data.actor.type;
-    const isRelevantType = ['playerCharacter', 'scelerat', 'lieutenant'].includes(actorType);
-    const hasSorcellerie = (data.actor.system.skills?.sorcellerie?.value || 0) > 0;
-    
+    const isRelevantType = [
+      'playerCharacter',
+      'scelerat',
+      'hommeDeMain',
+    ].includes(actorType);
+    const hasSorcellerie =
+      (data.actor.system.skills?.sorcellerie?.value || 0) > 0;
+
     data.showSorcellerieTab = isRelevantType && hasSorcellerie;
 
     // Config pour la sorcellerie
     data.config = {
       attributes: {
-        "esprit": "Esprit",
-        "finesse": "Finesse",
-        "gaillardise": "Gaillardise",
-        "resolution": "Résolution",
-        "panache": "Panache"
+        esprit: 'Esprit',
+        finesse: 'Finesse',
+        gaillardise: 'Gaillardise',
+        resolution: 'Résolution',
+        panache: 'Panache',
       },
       sorcellerieTypes: {
-        "porte": "Porte",
-        "sorte": "Sorte",
-        "hexen": "Hexen",
-        "glamour": "Glamour",
-        "sanderis": "Sanderis",
-        "alquemie": "Alquemie"
-      }
+        porte: 'Porte',
+        sorte: 'Sorte',
+        hexen: 'Hexen',
+        glamour: 'Glamour',
+        sanderis: 'Sanderis',
+        alquemie: 'Alquemie',
+      },
     };
 
     // Préparer le contrecoup si nécessaire
-    if (data.actor.system.sorcellerie?.type === "sorte") {
+    if (data.actor.system.sorcellerie?.type === 'sorte') {
       const contrecoupValue = data.actor.system.sorcellerie.contrecoup || 0;
       const contrecoup = [];
       for (let i = 1; i <= 10; i++) {
         contrecoup.push({
           index: i,
-          filled: contrecoupValue >= i
+          filled: contrecoupValue >= i,
         });
       }
       data.contrecoup = contrecoup;
@@ -131,13 +144,17 @@ export class PlayerCharacterSheet extends ActorSheet {
     html.find('.item-create').click(this._onItemCreate.bind(this));
 
     // Gestion des cercles d'attributs
-    html.find('.attribute-circle').click(this._onAttributeCircleClick.bind(this));
+    html
+      .find('.attribute-circle')
+      .click(this._onAttributeCircleClick.bind(this));
 
     // Gestion des cercles de compétences
     html.find('.skill-circle').click(this._onSkillCircleClick.bind(this));
 
     // Gestion de la spécialité des compétences
-    html.find('.skill-specialized-toggle').click(this._onSkillSpecializedClick.bind(this));
+    html
+      .find('.skill-specialized-toggle')
+      .click(this._onSkillSpecializedClick.bind(this));
 
     // Gestion du lancer de dés pour les compétences
     html.find('.skill-roll-dice').click(this._onRollSkill.bind(this));
@@ -152,11 +169,15 @@ export class PlayerCharacterSheet extends ActorSheet {
     html.find('.heroisme-control').click(this._onHeroismeControl.bind(this));
 
     // Mise à jour directe du nom de l'équipement
-    html.find('.equipement-name input').change(this._onEquipementNameChange.bind(this));
+    html
+      .find('.equipement-name input')
+      .change(this._onEquipementNameChange.bind(this));
 
     // Gestion des blessures
     html.find('.blessure-normal').click(this._onBlessureNormalClick.bind(this));
-    html.find('.blessure-dramatique').click(this._onBlessureDramatiqueClick.bind(this));
+    html
+      .find('.blessure-dramatique')
+      .click(this._onBlessureDramatiqueClick.bind(this));
 
     // Gestion du contrecoup
     html.find('.contrecoup-circle').click(this._onContrecoupClick.bind(this));
@@ -174,7 +195,7 @@ export class PlayerCharacterSheet extends ActorSheet {
     const currentValue = Number(system.sorcellerie?.contrecoup) || 0;
 
     const newValue = currentValue === index ? index - 1 : index;
-    await this.actor.update({ "system.sorcellerie.contrecoup": newValue });
+    await this.actor.update({ 'system.sorcellerie.contrecoup': newValue });
   }
 
   /**
@@ -188,12 +209,12 @@ export class PlayerCharacterSheet extends ActorSheet {
     const system = (this.actor as any).system;
     const currentValue = Number(system.blessures?.value) || 0;
     const currentDramatiques = Number(system.blessures?.dramatiques) || 0;
-    
+
     // Si on clique sur la dernière blessure remplie, on la décoche
     // Sinon on remplit jusqu'à cet index
     const newValue = currentValue === index ? index - 1 : index;
 
-    const updates: any = { "system.blessures.value": newValue };
+    const updates: any = { 'system.blessures.value': newValue };
 
     // Quand je coche un cercle, je doit aussi cocher les étoiles qui sont avant.
     // L'étoile avant le cercle d'index 'index' est celle du groupe précédent.
@@ -201,12 +222,12 @@ export class PlayerCharacterSheet extends ActorSheet {
     const gaillardise = attributes?.gaillardise?.value || 1;
     const resolution = attributes?.resolution?.value || 1;
     const baseBlessure = Math.max(gaillardise, resolution);
-    
+
     const groupOfClick = Math.ceil(index / baseBlessure);
     const requiredDramatiques = groupOfClick - 1;
 
     if (newValue > currentValue && currentDramatiques < requiredDramatiques) {
-      updates["system.blessures.dramatiques"] = requiredDramatiques;
+      updates['system.blessures.dramatiques'] = requiredDramatiques;
     }
 
     await this.actor.update(updates);
@@ -223,10 +244,10 @@ export class PlayerCharacterSheet extends ActorSheet {
     const system = (this.actor as any).system;
     const currentDramatiques = Number(system.blessures?.dramatiques) || 0;
     const currentValue = Number(system.blessures?.value) || 0;
-    
+
     const newValue = currentDramatiques === index ? index - 1 : index;
 
-    const updates: any = { "system.blessures.dramatiques": newValue };
+    const updates: any = { 'system.blessures.dramatiques': newValue };
 
     // Quand je coche une étoile, je dois aussi cocher tous les cercles précédents.
     // Les cercles précédents l'étoile 'index' sont tous ceux des groupes 1 à 'index'.
@@ -238,7 +259,7 @@ export class PlayerCharacterSheet extends ActorSheet {
     const requiredValue = index * baseBlessure;
 
     if (newValue > currentDramatiques && currentValue < requiredValue) {
-      updates["system.blessures.value"] = requiredValue;
+      updates['system.blessures.value'] = requiredValue;
     }
 
     await this.actor.update(updates);
@@ -251,8 +272,8 @@ export class PlayerCharacterSheet extends ActorSheet {
    */
   private async _onEquipementNameChange(event: JQuery.ChangeEvent) {
     event.preventDefault();
-    const element = $(event.currentTarget).closest(".equipement-item");
-    const itemId = element.data("item-id");
+    const element = $(event.currentTarget).closest('.equipement-item');
+    const itemId = element.data('item-id');
     const newName = event.currentTarget.value;
     const item = this.actor.items.get(itemId);
     if (item) {
@@ -268,10 +289,12 @@ export class PlayerCharacterSheet extends ActorSheet {
   private async _onHeroismeControl(event: JQuery.ClickEvent) {
     event.preventDefault();
     const action = event.currentTarget.dataset.action;
-    const currentValue = Number((this.actor as any).system.heroisme?.value) || 0;
-    const newValue = action === "increase" ? currentValue + 1 : Math.max(0, currentValue - 1);
+    const currentValue =
+      Number((this.actor as any).system.heroisme?.value) || 0;
+    const newValue =
+      action === 'increase' ? currentValue + 1 : Math.max(0, currentValue - 1);
 
-    await this.actor.update({ "system.heroisme.value": newValue });
+    await this.actor.update({ 'system.heroisme.value': newValue });
   }
 
   /**
@@ -281,8 +304,10 @@ export class PlayerCharacterSheet extends ActorSheet {
    */
   private _onItemEdit(event: JQuery.ClickEvent) {
     event.preventDefault();
-    const element = $(event.currentTarget).closest(".avantage-item, .equipement-item, .travers-item, .pouvoir-item");
-    const itemId = element.data("item-id");
+    const element = $(event.currentTarget).closest(
+      '.avantage-item, .equipement-item, .pouvoir-item',
+    );
+    const itemId = element.data('item-id');
     const item = this.actor.items.get(itemId);
     item?.sheet?.render(true);
   }
@@ -299,45 +324,37 @@ export class PlayerCharacterSheet extends ActorSheet {
     const typeName = type.charAt(0).toUpperCase() + type.slice(1);
 
     let itemData;
-    if (type === "equipements") {
+    if (type === 'equipements') {
       itemData = {
         name: `Nouvel Equipement`,
-        type: type
+        type: type,
       };
-    } else if (type === "avantage") {
+    } else if (type === 'avantage') {
       itemData = {
         name: `Nouvel Avantage`,
         type: type,
         system: {
-          type: "passif",
-          description: ""
-        }
+          type: 'passif',
+          description: '',
+        },
       };
-    } else if (type === "travers") {
-      itemData = {
-        name: `Nouveau Travers`,
-        type: type,
-        system: {
-          description: ""
-        }
-      };
-    } else if (type === "pouvoir") {
+    } else if (type === 'pouvoir') {
       itemData = {
         name: `Nouveau Pouvoir`,
         type: type,
         system: {
-          description: ""
-        }
+          description: '',
+        },
       };
     } else {
       // For other types, include value
       itemData = {
         name: `New ${typeName}`,
         type: type,
-        system: { value: 0 }
+        system: { value: 0 },
       };
     }
-    await this.actor.createEmbeddedDocuments("Item", [itemData]);
+    await this.actor.createEmbeddedDocuments('Item', [itemData]);
   }
 
   /**
@@ -347,9 +364,11 @@ export class PlayerCharacterSheet extends ActorSheet {
    */
   private async _onItemDelete(event: JQuery.ClickEvent) {
     event.preventDefault();
-    const element = $(event.currentTarget).closest(".avantage-item, .equipement-item, .travers-item, .pouvoir-item");
-    const itemId = element.data("item-id");
-    await this.actor.deleteEmbeddedDocuments("Item", [itemId]);
+    const element = $(event.currentTarget).closest(
+      '.avantage-item, .equipement-item, .pouvoir-item',
+    );
+    const itemId = element.data('item-id');
+    await this.actor.deleteEmbeddedDocuments('Item', [itemId]);
   }
 
   /**
@@ -361,8 +380,8 @@ export class PlayerCharacterSheet extends ActorSheet {
     event.preventDefault();
     const element = event.currentTarget;
     const index = Number(element.dataset.index);
-    const parent = $(element).closest(".profile-item");
-    const attribute = parent.data("attribute");
+    const parent = $(element).closest('.profile-item');
+    const attribute = parent.data('attribute');
 
     if (attribute) {
       const field = `system.attributes.${attribute}.value`;
@@ -379,14 +398,14 @@ export class PlayerCharacterSheet extends ActorSheet {
     event.preventDefault();
     const element = event.currentTarget;
     const index = Number(element.dataset.index);
-    const parent = $(element).closest(".skill-item");
-    const skill = parent.data("skill");
+    const parent = $(element).closest('.skill-item');
+    const skill = parent.data('skill');
 
     if (skill) {
       const field = `system.skills.${skill}.value`;
       // Allow toggling off if clicking on the same value
       const currentValue = foundry.utils.getProperty(this.actor, field);
-      const newValue = (currentValue === index && index === 1) ? 0 : index;
+      const newValue = currentValue === index && index === 1 ? 0 : index;
       await this.actor.update({ [field]: newValue });
     }
   }
@@ -399,8 +418,8 @@ export class PlayerCharacterSheet extends ActorSheet {
   private async _onSkillSpecializedClick(event: JQuery.ClickEvent) {
     event.preventDefault();
     const element = event.currentTarget;
-    const parent = $(element).closest(".skill-item");
-    const skill = parent.data("skill");
+    const parent = $(element).closest('.skill-item');
+    const skill = parent.data('skill');
 
     if (skill) {
       const field = `system.skills.${skill}.specialized`;
@@ -417,53 +436,56 @@ export class PlayerCharacterSheet extends ActorSheet {
   private async _onRollSkill(event: JQuery.ClickEvent) {
     event.preventDefault();
     const element = event.currentTarget;
-    const parent = $(element).closest(".skill-item");
-    const skillKey = parent.data("skill");
-    const skill = foundry.utils.getProperty(this.actor, `system.skills.${skillKey}`);
+    const parent = $(element).closest('.skill-item');
+    const skillKey = parent.data('skill');
+    const skill = foundry.utils.getProperty(
+      this.actor,
+      `system.skills.${skillKey}`,
+    );
     const attributes = (this.actor as any).system.attributes;
     const combatAttributes = (this.actor as any).system.combatAttributes;
 
     const attributeLabels: Record<string, string> = {
-      esprit: "Esprit",
-      finesse: "Finesse",
-      gaillardise: "Gaillardise",
-      resolution: "Résolution",
-      panache: "Panache",
-      attaque: "Attaque",
-      defense: "Défense",
-      mouvement: "Mouvement",
-      degats: "Dégâts",
-      robustesse: "Robustesse"
+      esprit: 'Esprit',
+      finesse: 'Finesse',
+      gaillardise: 'Gaillardise',
+      resolution: 'Résolution',
+      panache: 'Panache',
+      attaque: 'Attaque',
+      defense: 'Défense',
+      mouvement: 'Mouvement',
+      degats: 'Dégâts',
+      robustesse: 'Robustesse',
     };
 
     const skillLabels: Record<string, string> = {
-      armeDeTir: "Arme de tir",
-      armesBlanches: "Armes blanches",
-      athletisme: "Athlétisme",
-      empathie: "Empathie",
-      furtivite: "Furtivité",
-      ingenierie: "Ingénierie",
-      intrigue: "Intrigue",
-      larcin: "Larcin",
-      legendes: "Légendes",
-      lettre: "Lettre",
-      navigation: "Navigation",
-      persuasion: "Persuasion",
-      protocole: "Protocole",
-      recherche: "Recherche",
-      religion: "Religion",
-      representation: "Représentation",
-      science: "Science",
-      sorcellerie: "Sorcellerie",
-      strategie: "Stratégie",
-      subornation: "Subornation",
-      survie: "Survie"
+      armeDeTir: 'Arme de tir',
+      armesBlanches: 'Armes blanches',
+      athletisme: 'Athlétisme',
+      empathie: 'Empathie',
+      furtivite: 'Furtivité',
+      ingenierie: 'Ingénierie',
+      intrigue: 'Intrigue',
+      larcin: 'Larcin',
+      legendes: 'Légendes',
+      lettre: 'Lettre',
+      navigation: 'Navigation',
+      persuasion: 'Persuasion',
+      protocole: 'Protocole',
+      recherche: 'Recherche',
+      religion: 'Religion',
+      representation: 'Représentation',
+      science: 'Science',
+      sorcellerie: 'Sorcellerie',
+      strategie: 'Stratégie',
+      subornation: 'Subornation',
+      survie: 'Survie',
     };
 
     const skillLabel = skillLabels[skillKey] || skillKey;
 
     // Préparer le contenu de la modale
-    let attributeOptions = "";
+    let attributeOptions = '';
     for (let key of Object.keys(attributes)) {
       const label = attributeLabels[key] || key;
       attributeOptions += `<option value="${key}">${label}</option>`;
@@ -491,10 +513,6 @@ export class PlayerCharacterSheet extends ActorSheet {
           <input type="number" name="bonus" value="0" />
         </div>
         <div class="form-group">
-          <label>Pari</label>
-          <input type="number" name="pari" value="0" />
-        </div>
-        <div class="form-group">
           <label>Difficulté (optionnel)</label>
           <input type="number" name="difficulty" value="2" />
         </div>
@@ -507,17 +525,21 @@ export class PlayerCharacterSheet extends ActorSheet {
       buttons: {
         roll: {
           icon: '<i class="fas fa-dice"></i>',
-          label: "Lancer",
+          label: 'Lancer',
           callback: async (html: any) => {
             const attrKey = html.find('[name="attribute"]').val();
             const bonus = parseInt(html.find('[name="bonus"]').val()) || 0;
-            const pari = parseInt(html.find('[name="pari"]').val()) || 0;
             const difficultyStr = html.find('[name="difficulty"]').val();
-            const difficulty = difficultyStr !== "" ? parseInt(difficultyStr) : null;
+            const difficulty =
+              difficultyStr !== '' ? parseInt(difficultyStr) : null;
 
             let attribute = attributes[attrKey];
             let attrLabel = attributeLabels[attrKey] || attrKey;
-            const thresholdModifier = (game.settings.get("fvtt-svnsea-v3", "modificateurSeuil") as number) || 0;
+            const thresholdModifier =
+              (game.settings.get(
+                'fvtt-svnsea-v3',
+                'modificateurSeuil',
+              ) as number) || 0;
             if (!attribute && combatAttributes) {
               const combatAttr = combatAttributes[attrKey];
               if (combatAttr) {
@@ -528,47 +550,42 @@ export class PlayerCharacterSheet extends ActorSheet {
             }
             const skillValue = skill.value;
             const attrValue = attribute.value;
-            const variante = game.settings.get("fvtt-svnsea-v3", "variante") as string;
-            const seuil = variante === 'standard' ? (10 - skillValue) - thresholdModifier : attribute.seuil;
-            const dramatiques = (this.actor as any).system.blessures?.dramatiques || 0;
+            const variante = game.settings.get(
+              'fvtt-svnsea-v3',
+              'variante',
+            ) as string;
+            const seuil =
+              variante === 'standard'
+                ? 8 - Math.round(skillValue / 2) - thresholdModifier
+                : attribute.seuil;
+            const dramatiques =
+              (this.actor as any).system.blessures?.dramatiques || 0;
             const isSpecialized = skill.specialized || false;
 
-            // Nombre de dés : Attribut + Compétence + Bonus - Pari - Blessures Dramatiques
-            let numDice = attrValue + skillValue + bonus - pari - dramatiques;
+            // Nombre de dés : Attribut + Compétence + Bonus
+            let numDice = attrValue + skillValue + bonus;
+            let numWoundsDice = dramatiques > 0 ? dramatiques : 0;
 
             if (numDice <= 0) {
-              ui.notifications.warn("Le nombre de dés doit être supérieur à 0.");
+              ui.notifications.warn(
+                'Le nombre de dés doit être supérieur à 0.',
+              );
               return;
             }
 
             // Lancer les dés
-            const roll = new Roll(`${numDice}d10`);
+            const explosionRule = isSpecialized ? '9' : '10'; // 9 ou 10 selon spécialité
+            const roll = new Roll(
+              `{${numDice}d10x>=${explosionRule}cs>=${seuil}, ${numWoundsDice}d10x>=${explosionRule}cs>=${seuil}[die:Blessures]}`,
+            );
             await roll.evaluate();
 
             // Compter les succès (dés >= seuil)
-            let successCount = 0;
-            let diceResults = [...(roll.terms[0] as any).results];
-
-            // Gérer les 10 explosifs si spécialité
-            if (isSpecialized) {
-              let tens = diceResults.filter(r => r.result === 10).length;
-              while (tens > 0) {
-                const extraRoll = new Roll(`${tens}d10`);
-                await extraRoll.evaluate();
-                const extraResults = (extraRoll.terms[0] as any).results;
-                diceResults = diceResults.concat(extraResults);
-                tens = extraResults.filter((r: any) => r.result === 10).length;
-              }
-            }
-
-            for (let result of diceResults) {
-              if (result.result >= seuil) {
-                successCount++;
-              }
-            }
+            let successCount = roll.total ? roll.total : 0;
+            let rolls = [...(roll.terms[0] as any).rolls];
 
             // Message de résultat
-            let statusMessage = "";
+            let statusMessage = '';
             if (difficulty !== null) {
               if (successCount >= difficulty) {
                 statusMessage = `<p style="color: green; font-weight: bold;">Réussite (Difficulté ${difficulty})</p>`;
@@ -577,10 +594,19 @@ export class PlayerCharacterSheet extends ActorSheet {
               }
             }
 
-            let pariMessage = "";
-            if (pari > 0) {
-              pariMessage = `<li>Pari : ${pari}</li>`;
+            // Message si le personnage est Sans défense à cause des blessures dramatiques
+            if (rolls[1].terms[0].results.some((r: any) => r.result === 1)) {
+              statusMessage += `<p style="color: red; font-weight: bold;">Le personnage est Sans défense à cause des blessures dramatiques.</p>`;
             }
+
+            let messageDesBlessures =
+              numWoundsDice > 0
+                ? `<div class="roll-details" style="font-size: 0.8em; color: gray;">
+                  Dés de blessures : ${rolls[1].terms[0].results
+                    .map((r: any) => r.result)
+                    .join(', ')}
+                </div>`
+                : '';
 
             const chatContent = `
               <div class="fvtt-svnsea-v3-roll">
@@ -590,29 +616,30 @@ export class PlayerCharacterSheet extends ActorSheet {
                 </div>
                 <ul>
                   <li>Succès : ${successCount}</li>
-                  ${pariMessage}
                 </ul>
                 ${statusMessage}
                 <div class="roll-details" style="font-size: 0.8em; color: gray;">
-                  Dés : ${diceResults.map((r: any) => r.result).join(", ")} (Seuil : ${seuil})
+                  Dés : ${rolls[0].terms[0].results
+                    .map((r: any) => r.result)
+                    .join(', ')}
                 </div>
+                ${messageDesBlessures}
               </div>
             `;
 
             await ChatMessage.create({
               speaker: ChatMessage.getSpeaker({ actor: this.actor as any }),
               content: chatContent,
-              type: CONST.CHAT_MESSAGE_TYPES.ROLL,
-              rolls: [roll]
+              rolls: [roll],
             });
-          }
+          },
         },
         cancel: {
           icon: '<i class="fas fa-times"></i>',
-          label: "Annuler"
-        }
+          label: 'Annuler',
+        },
       },
-      default: "roll"
+      default: 'roll',
     }).render(true);
   }
 }
